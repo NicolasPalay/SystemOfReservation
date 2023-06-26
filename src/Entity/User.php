@@ -58,6 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $fullName = null;
 
+    #[ORM\OneToOne(mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private ?Hairdresser $hairdresser = null;
+
 
 
     public function __construct()
@@ -154,6 +157,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreateAt(\DateTimeImmutable $createAt): static
     {
         $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    public function getHairdresser(): ?Hairdresser
+    {
+        return $this->hairdresser;
+    }
+
+    public function setHairdresser(?Hairdresser $hairdresser): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($hairdresser === null && $this->hairdresser !== null) {
+            $this->hairdresser->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($hairdresser !== null && $hairdresser->getUser() !== $this) {
+            $hairdresser->setUser($this);
+        }
+
+        $this->hairdresser = $hairdresser;
 
         return $this;
     }
