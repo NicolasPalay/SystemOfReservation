@@ -24,10 +24,15 @@ security:
             # switch_user: true
 
     # Easy way to control access for large sections of your site
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_HAIRDRESSER: [ ROLE_USER, ROLE_HAIRDRESSER ]
+        ROLE_ADMIN: [ ROLE_USER, ROLE_TECH, ROLE_USER ]
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path : ^\hairdresser, roles: ROLE_HAIRDRESSER}
+         - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
