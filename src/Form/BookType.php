@@ -18,7 +18,11 @@ class BookType extends AbstractType
             ->add('pictures',FileType::class,[
                     'multiple'=>true,
                     'label'=>'Ajouter des photos',
-                    'mapped'=>false,])
+                    'mapped'=>false,
+                'attr' => [
+                    'accept' => 'image/jpeg, image/png, image/gif',
+        'onchange' => "previewPictures(this)"
+                ]])
         ;
     }
 
