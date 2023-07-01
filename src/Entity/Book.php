@@ -25,13 +25,15 @@ class Book
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToMany(targetEntity: Pictures::class, mappedBy: 'book')]
+    #[ORM\OneToMany(mappedBy: 'book', targetEntity: Pictures::class)]
     private Collection $pictures;
 
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -86,7 +88,7 @@ class Book
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures->add($picture);
-            $picture->addBook($this);
+            $picture->setBook($this);
         }
 
         return $this;
@@ -95,9 +97,14 @@ class Book
     public function removePicture(Pictures $picture): static
     {
         if ($this->pictures->removeElement($picture)) {
-            $picture->removeBook($this);
+            // set the owning side to null (unless already changed)
+            if ($picture->getBook() === $this) {
+                $picture->setBook(null);
+            }
         }
 
         return $this;
     }
+
+
 }
