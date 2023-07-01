@@ -17,7 +17,8 @@ class BookType extends AbstractType
             ->add('content')
             ->add('pictures',FileType::class,[
                     'multiple'=>true,
-                    'label'=>'Ajouter des photos'])
+                    'label'=>'Ajouter des photos',
+                    'mapped'=>false,])
         ;
     }
 
