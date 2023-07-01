@@ -25,12 +25,14 @@ class Book
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'book', targetEntity: Pictures::class)]
+    #[ORM\OneToMany(mappedBy: 'book', targetEntity: Pictures::class, orphanRemoval: true,
+cascade:['persist'])]
     private Collection $pictures;
 
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
 
