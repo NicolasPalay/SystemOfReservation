@@ -18,13 +18,9 @@ class Pictures
     #[ORM\Column(length: 255)]
     private ?string $Name = null;
 
-    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'pictures')]
-    private Collection $book;
+    #[ORM\ManyToOne(inversedBy: 'pictures')]
+    private ?Book $book = null;
 
-    public function __construct()
-    {
-        $this->book = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -43,27 +39,17 @@ class Pictures
         return $this;
     }
 
-    /**
-     * @return Collection<int, Book>
-     */
-    public function getBook(): Collection
+    public function getBook(): ?Book
     {
         return $this->book;
     }
 
-    public function addBook(Book $book): static
+    public function setBook(?Book $book): static
     {
-        if (!$this->book->contains($book)) {
-            $this->book->add($book);
-        }
+        $this->book = $book;
 
         return $this;
     }
 
-    public function removeBook(Book $book): static
-    {
-        $this->book->removeElement($book);
 
-        return $this;
-    }
 }
