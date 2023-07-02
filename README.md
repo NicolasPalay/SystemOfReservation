@@ -1,6 +1,6 @@
 # Adeline hair salon
 ## members :
-- __Nicolas PALAY
+- Nicolas PALAY
 ### The Project :
 Creation of a website with reservation system accompanied by a blog
 the salon is composed of 3 hairdressers
