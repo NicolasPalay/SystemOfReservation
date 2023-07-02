@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Speciality;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -10,6 +11,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    const SPECIALITY = ['coupe' => 30, 'coloration' => 90, 'meches' => 90, 'balayage' => 90,
+        'permanente' => 60, 'lissage' => 50,
+        'soins' => 30];
+
+
     private $faker;
 
     public function __construct()
@@ -23,7 +29,6 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setEmail($this->faker->email);
             $user->setFullName($this->faker->name);
-
             $user->setPlainPassword('123456');
 
             $manager->persist($user);
@@ -33,12 +38,20 @@ class AppFixtures extends Fixture
             $user->setEmail($this->faker->email);
             $user->setFullName($this->faker->name);
             $user->setRoles(['ROLE_HAIRDRESSER']);
-
             $user->setPlainPassword('123456');
-
             $manager->persist($user);
+            $this->addReference('user_' . $i, $user);
         }
+        $manager->flush();
 
+        foreach (self::SPECIALITY as $key => $spec)
+    {
+        $speciality = new Speciality();
+        $speciality->setNameSpeciality($key);
+        $speciality->setDuration($spec);
+        $speciality->setContent($this->faker->text());
+        $manager->persist($speciality);
+}
         $manager->flush();
     }
 }
