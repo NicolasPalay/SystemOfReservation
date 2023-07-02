@@ -1,0 +1,31 @@
+@import 'style/nav.css';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
+:root {
+    --primary-color: #7A4A48;
+    --secondary-color: #ffea98;
+    --background: #FAE0DF;
+    --dark-color: #303030;
+    --light-color: #fff;
+    --text-font: 'BenchNine', sans-serif;
+    --script-font: 'Arizonia', cursive;
+    --border-radius: 0.5rem;
+    --transition: all 0.3s linear;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a.ca-link {color: var(--primary-color);border-bottom: 3px solid var(--light-color);
+    font-family: var( --text-font);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+a.ca-link:hover {
+    color: var(--secondary-color);
+    border-bottom: 3px solid var(--secondary-color);
+}
