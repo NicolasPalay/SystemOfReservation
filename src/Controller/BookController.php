@@ -50,16 +50,8 @@ class BookController extends AbstractController
                 $book->addPicture($newPicture);
 
             }
-            $deletedPictures = $request->request->get('deleted_pictures');
 
-            foreach ($deletedPictures as $deletedPictureId) {
-                $deletedPicture = $picturesRepository->find($deletedPictureId);
 
-                if ($deletedPicture) {
-                    $book->removePicture($deletedPicture);
-                    $entityManager->remove($deletedPicture);
-                }
-            }
 
             $newBook = $form->getData();
             $entityManager->persist($newBook);
