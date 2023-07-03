@@ -19,8 +19,10 @@ class BookType extends AbstractType
                     'multiple'=>true,
                     'label'=>'Ajouter des photos',
                     'mapped'=>false,
+                'required' => false,
                 'attr' => [
                     'accept' => 'image/jpeg, image/png, image/gif',
+
         'onchange' => "previewPictures(this)"
                 ]])
         ;
