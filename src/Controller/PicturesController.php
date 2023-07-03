@@ -23,6 +23,14 @@ class PicturesController extends AbstractController
     {
         $entityManager->remove($picture);
         $entityManager->flush();
+
+        $imagePath = 'assets/uploads/pictures/' . $picture->getName();
+        $imagePathMini = 'assets/uploads/pictures/mini/300x300-' . $picture->getName();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+            unlink($imagePathMini);
+        }
+
         return $this->redirectToRoute('book_edit', ['id' => $picture->getBook()->getId()
 
         ]);
