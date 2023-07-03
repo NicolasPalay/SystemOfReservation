@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{book.titleBook}}{% endblock %}
+
+{% block body %}
+    <h1>{{book.titleBook}}</h1>
+
+    {% for image in book.pictures %}
+        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
+    {% endfor %}
+
+
+    <<a href="{{ path('book_edit', { id: book.id }) }}">edit</a>
+{% endblock %}

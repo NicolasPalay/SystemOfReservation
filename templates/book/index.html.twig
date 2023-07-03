@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}Toutes nos créations{% endblock %}
 
 {% block body %}
-<h1 class="BookController">Tout le book</h1>
+<h1 class="BookController">Voici toutes nos créations</h1>
 {% for book in books %}
-    {{ book.titleBook }}
+    <a href="{{ path('book_show', { id: book.id }) }}">{{ book.titleBook }}</a>
 
     {{ book.content }}
-    {% for image in book.pictures %}
-        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
+
+        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+    <a href="{{ path('book_delete',{ id: book.id }) }}">delete</a>
     {% endfor %}
-    {% endfor %}
+
 {% endblock %}
