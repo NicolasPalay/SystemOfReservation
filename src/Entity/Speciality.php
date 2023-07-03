@@ -28,6 +28,9 @@ class Speciality
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?pictures $picutre = null;
+
     public function __construct()
     {
         $this->hairdresser = new ArrayCollection();
@@ -94,6 +97,18 @@ class Speciality
     public function setContent(?string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPicutre(): ?pictures
+    {
+        return $this->picutre;
+    }
+
+    public function setPicutre(?pictures $picutre): static
+    {
+        $this->picutre = $picutre;
 
         return $this;
     }
