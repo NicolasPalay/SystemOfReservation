@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1>Hello HomeController!</h1>
+    <section class="ca-book">
+    {% for book in books %}
+        <article>
+            <div class="">    </div>
+    {{ book.titleBook }}
+        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+        </article>
+    {% endfor %}
+    </section>
+{% endblock %}
