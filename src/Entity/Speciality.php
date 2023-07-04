@@ -29,7 +29,7 @@ class Speciality
     private ?string $content = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?pictures $picutre = null;
+    private ?Pictures $picture = null;
 
     public function __construct()
     {
@@ -101,14 +101,14 @@ class Speciality
         return $this;
     }
 
-    public function getPicutre(): ?pictures
+    public function getPicture(): ?pictures
     {
-        return $this->picutre;
+        return $this->picture;
     }
 
-    public function setPicutre(?pictures $picutre): static
+    public function setPicture(?pictures $picture): static
     {
-        $this->picutre = $picutre;
+        $this->picture = $picture;
 
         return $this;
     }

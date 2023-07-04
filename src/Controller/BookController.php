@@ -35,38 +35,37 @@ class BookController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit')]
-    public function add(Request $request, PictureService $pictureService, PicturesRepository $picturesRepository,EntityManagerInterface $entityManager,Book $book): Response
+    public function add(Request $request, PictureService $pictureService, PicturesRepository $picturesRepository, EntityManagerInterface $entityManager, Book $book): Response
     {
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $pictures = $form->get('pictures')->getData();
+            if ($form->has('pictures')) {
+                $pictures = $form->get('pictures')->getData();
 
-            foreach ($pictures as $picture) {
-                $folder = 'pictures';
-                $pictureName = $pictureService->add($picture, $folder, 300,300);
-                $newPicture = new Pictures();
-                $newPicture->setName($pictureName);
-                $book->addPicture($newPicture);
-
+                foreach ($pictures as $picture) {
+                    $folder = 'pictures';
+                    $pictureName = $pictureService->add($picture, $folder, 300, 300);
+                    $newPicture = new Pictures();
+                    $newPicture->setName($pictureName);
+                    $book->addPicture($newPicture);
+                }
             }
-
-
 
             $newBook = $form->getData();
             $entityManager->persist($newBook);
             $entityManager->flush();
 
-
             return $this->redirectToRoute('book_index');
         }
+
         return $this->render('book/edit.html.twig', [
-
             'form' => $form->createView(),
-            'book'=>$book
-
+            'book' => $book
         ]);
     }
+
     #[Route('/new', name: 'new')]
     public function update(Request $request, PictureService $pictureService, EntityManagerInterface $entityManager): Response
     {

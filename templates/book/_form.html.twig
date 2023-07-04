@@ -1,6 +1,7 @@
 {{ form_start(form) }}
          {{ form_widget(form.titleBook) }}
             {{ form_widget(form.content) }}
+
     {% if book.id is empty %}
         {# Champ obligatoire pour la création #}
         {{ form_row(form.pictures, { 'attr': {'required': 'required'} }) }}
@@ -8,6 +9,7 @@
         {# Champ facultatif pour l'édition #}
         {{ form_row(form.pictures) }}
     {% endif %}
+
 
 <div id="image-container">
     <!-- L'emplacement pour les images prévisualisées -->

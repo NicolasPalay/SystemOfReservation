@@ -50,6 +50,7 @@ class AppFixtures extends Fixture
         $speciality->setNameSpeciality($key);
         $speciality->setDuration($spec);
         $speciality->setContent($this->faker->text());
+
         $manager->persist($speciality);
 }
         $manager->flush();
