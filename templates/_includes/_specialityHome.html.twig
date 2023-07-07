@@ -1,0 +1,17 @@
+<section class="ca-book-container my-5">
+    <div class="ca-background-speciality"><div></div></div>
+    {% for book in books %}
+        <article>
+            <div class="ca-box-speciality">
+
+                    <a href="{{ path('book_index') }}" class="h4">{{ book.titleBook }}</a>
+                    <a href="#" class="pulse ca-btn h5">Pulse</a>
+                <div class="ca-box-book-hover c-dflex-columns justify-content-between py-3">
+                    <a href="{{ path('book_index') }}" class="h4">{{ book.titleBook }}</a>
+                    <a href="#" class="pulse ca-btn h5">Pulse</a>
+                </div>
+                <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+            </div>
+        </article>
+    {% endfor %}
+</section>

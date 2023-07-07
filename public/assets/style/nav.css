@@ -11,3 +11,4 @@
     font-size: 3rem;
     color: var(--primary-color);
 }
+.navbar-expand-lg .navbar-nav .nav-link{ padding:10px 30px}
