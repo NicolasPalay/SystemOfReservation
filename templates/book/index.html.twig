@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Toutes nos créations{% endblock %}
-
+{% block headerImg %}  <img src="{{ asset('assets/uploads/pictures/book.png')}}" alt="">{% endblock %}
 {% block body %}
-<h1 class="BookController">Voici toutes nos créations</h1>
-{% for book in books %}
-    <a href="{{ path('book_show', { id: book.id }) }}">{{ book.titleBook }}</a>
 
-    {{ book.content }}
+<h1 class="pulse ca-btn h2 my-5 mx-auto">Book</h1>
+<section class="ca-book-container my-5">
+    {% for book in books %}
+        <article>
+            <div class="ca-box-book">
 
-        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
-    <a href="{{ path('book_delete',{ id: book.id }) }}">delete</a>
+                <div class="ca-box-book-hover c-dflex-columns justify-content-between py-3">
+                    <a href="#" class="h4">{{ book.titleBook }}</a>
+                    <a href="#" class="pulse ca-btn h5">Pulse</a>
+                </div>
+                <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+            </div>
+        </article>
     {% endfor %}
+</section>
+
+
 
 {% endblock %}
