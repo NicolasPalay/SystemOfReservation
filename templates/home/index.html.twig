@@ -3,14 +3,8 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<h1>Hello HomeController!</h1>
-    <section class="ca-book">
-    {% for book in books %}
-        <article>
-            <div class="">    </div>
-    {{ book.titleBook }}
-        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
-        </article>
-    {% endfor %}
-    </section>
+<h1 class="pulse ca-btn h2 my-5 mx-auto"><a href="{{ path('book_index') }}">Book</a> </h1>
+    {% include '_includes/_bookHome.html.twig' %}
+    <h1 class="pulse ca-btn h2 my-5 mx-auto"><a href="{{ path('book_index') }}">Spécialité</a> </h1>
+    {% include '_includes/_specialityHome.html.twig' %}
 {% endblock %}
