@@ -21,6 +21,9 @@ class Hairdresser
     #[ORM\ManyToMany(targetEntity: Speciality::class, mappedBy: 'hairdresser')]
     private Collection $specialities;
 
+    #[ORM\OneToOne(inversedBy: 'hairdresser', cascade: ['persist', 'remove'])]
+    private ?Pictures $picture = null;
+
     public function __construct()
     {
         $this->specialities = new ArrayCollection();
@@ -66,6 +69,18 @@ class Hairdresser
         if ($this->specialities->removeElement($speciality)) {
             $speciality->removeHairdresser($this);
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?Pictures
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?Pictures $picture): static
+    {
+        $this->picture = $picture;
 
         return $this;
     }
