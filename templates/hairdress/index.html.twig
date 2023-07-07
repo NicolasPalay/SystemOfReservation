@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HairdressController!{% endblock %}
+
+{% block body %}
+
+
+    <h1></h1>
+
+    This friendly message is coming from:
+    <ul>
+        {% for hairdresser in hairdressers %}
+        {{ hairdresser.user.fullName }}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
