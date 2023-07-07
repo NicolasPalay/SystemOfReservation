@@ -13,10 +13,7 @@ class HairdressController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(HairdresserRepository$hairdresserRepository): Response
     {
-
-
         return $this->render('hairdress/index.html.twig', [
-
             'hairdressers' => $hairdresserRepository->findAll(),
         ]);
     }

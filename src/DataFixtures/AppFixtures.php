@@ -42,6 +42,13 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
         }
+        $user = new User();
+        $user->setEmail($this->faker->email);
+        $user->setFullName($this->faker->name);
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPlainPassword('123456');
+        $manager->persist($user);
+        $this->addReference('user_' . $i, $user);
         $manager->flush();
 
         foreach (self::SPECIALITY as $key => $spec)
