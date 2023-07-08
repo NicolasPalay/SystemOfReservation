@@ -7,9 +7,9 @@
 
    <p> {{ speciality.content }}</p>
    <p>{{ speciality.duration }} min</p>
-
+{% if speciality.picture %}
          <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ speciality.picture.name) }}" alt="">
-
+{% endif %}
 
     <<a href="{{ path('speciality_edit', { id: speciality.id }) }}">edit</a>
 {% endblock %}
