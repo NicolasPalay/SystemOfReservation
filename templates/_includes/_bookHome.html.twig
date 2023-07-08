@@ -4,10 +4,10 @@
             <div class="ca-box-book">
 
                 <div class="ca-box-book-hover c-dflex-columns justify-content-between py-3">
-                    <a href="{{ path('book_index') }}" class="h4">{{ book.titleBook }}</a>
-                    <a href="#" class="pulse ca-btn h5">Pulse</a>
+                    <a href="{{ path('book_show', {id:book.id}) }}" class="h4">{{ book.titleBook }}</a>
+                    <a href="{{ path('book_show', {id:book.id}) }}" class="pulse ca-btn h5">Pulse</a>
                 </div>
-                <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+                <a href="{{ path('book_show', {id:book.id}) }}"><img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt=""></a>
             </div>
         </article>
     {% endfor %}
