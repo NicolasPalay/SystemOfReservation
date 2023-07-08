@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/hairdresser', name: 'hairdress_')]
+#[Route('/hairdresser', name: 'hairdresser_')]
 class HairdressController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -49,4 +49,13 @@ class HairdressController extends AbstractController
         'hairdresser' => $newHairdresser,
             ]);
     }
+    #[Route('show/{id}', name: 'show', methods: ['GET'])]
+    public function show(Hairdresser $hairdresser): Response
+    {
+
+        return $this->render('hairdress/show.html.twig', [
+            'hairdresser'=> $hairdresser,
+        ]);
+    }
+
 }
