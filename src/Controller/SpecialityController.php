@@ -24,10 +24,8 @@ class SpecialityController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(SpecialityRepository $specialityRepository): Response
     {
-        $speciality = $specialityRepository->findAll();
-
         return $this->render('speciality/index.html.twig', [
-            'speciality' => $speciality,
+            'speciality' => $specialityRepository->findAll(['id' => 'DESC'])
         ]);
     }
     #[Route('/show/{id}', name: 'show', methods: ['GET'])]
@@ -46,17 +44,7 @@ class SpecialityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           /* $picture = $form->get('picture')->getData();
-            $folder = 'pictures';
-            $pictureName = $pictureService->add($picture, $folder, 300, 300);
-            $newPicture = new Pictures();
-            $newPicture->setName($pictureName);
-
-            $speciality->setPicture($newPicture); // Ajoute la nouvelle image à la spécialité
-
-            $entityManager->persist($speciality);
-            $entityManager->flush();*/
-            $speciality =$addService->processForm($form, $speciality);
+           $speciality =$addService->processForm($form, $speciality);
 
             return $this->redirectToRoute('speciality_index');
         }
@@ -68,14 +56,16 @@ class SpecialityController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function add(Request $request, PictureService $pictureService,
-                           EntityManagerInterface $entityManager,AddService $addService): Response
+    public function add(Request $request,
+                        PictureService $pictureService,
+                        EntityManagerInterface $entityManager,
+                        AddService $addService): Response
     {
         $newSpeciality = new Speciality();
         $form = $this->createForm(SpecialityType::class, $newSpeciality);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $newSpeciality = $addService->processForm($form, $newSpeciality );
 
             return $this->redirectToRoute('speciality_index');
