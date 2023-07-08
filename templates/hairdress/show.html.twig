@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{hairdresser.user.fullName}}{% endblock %}
+
+{% block body %}
+
+    <h1>{{hairdresser.user.fullName}}</h1>
+
+
+        <img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="">
+
+
+{#<a href="{{ path('hairdresser_edit', { id: hairdresser.id }) }}">edit</a>#}
+{% endblock %}
