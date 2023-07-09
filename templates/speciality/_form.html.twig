@@ -7,7 +7,7 @@
      {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}
  {% else %}
      {# Champ facultatif pour l'édition #}
-     {{ form_row(form.picture, { 'attr': {'required': 'none'}}) }}
+     {{ form_row(form.picture) }}
  {% endif %}
 
 

@@ -44,17 +44,22 @@ class SpecialityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $picture = $form->get('picture')->getData();
             $folder = 'pictures';
-            $pictureName = $pictureService->add($picture, $folder, 300, 300);
-            $newPicture = new Pictures();
-            $newPicture->setName($pictureName);
+            if ($picture !== null) {
+                $pictureName = $pictureService->add($picture, $folder, 300, 300);
+                $newPicture = new Pictures();
+                $newPicture->setName($pictureName);
 
-            $speciality->setPicture($newPicture); // Ajoute la nouvelle image à la spécialité
+                $speciality->setPicture($newPicture); // Ajoute la nouvelle image à la spécialité
 
             $entityManager->persist($speciality);
             $entityManager->flush();
-
+        }else{
+                $entityManager->persist($speciality);
+                $entityManager->flush();
+            }
             return $this->redirectToRoute('speciality_index');
         }
 
