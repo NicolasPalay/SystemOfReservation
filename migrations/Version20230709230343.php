@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230708172208 extends AbstractMigration
+final class Version20230709230343 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,6 +21,7 @@ final class Version20230708172208 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE book (id INT AUTO_INCREMENT NOT NULL, title_book VARCHAR(100) NOT NULL, content LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE calendar (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, start DATETIME NOT NULL, end DATETIME NOT NULL, color VARCHAR(7) NOT NULL, text_color VARCHAR(7) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE hairdresser (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, picture_id INT DEFAULT NULL, UNIQUE INDEX UNIQ_407D6245A76ED395 (user_id), UNIQUE INDEX UNIQ_407D6245EE45BDBF (picture_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE pictures (id INT AUTO_INCREMENT NOT NULL, book_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_8F7C2FC016A2B381 (book_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE speciality (id INT AUTO_INCREMENT NOT NULL, picture_id INT DEFAULT NULL, name_speciality VARCHAR(100) NOT NULL, duration INT NOT NULL, content LONGTEXT DEFAULT NULL, UNIQUE INDEX UNIQ_F3D7A08EEE45BDBF (picture_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -45,6 +46,7 @@ final class Version20230708172208 extends AbstractMigration
         $this->addSql('ALTER TABLE speciality_hairdresser DROP FOREIGN KEY FK_74FDBD623B5A08D7');
         $this->addSql('ALTER TABLE speciality_hairdresser DROP FOREIGN KEY FK_74FDBD62696F8EFF');
         $this->addSql('DROP TABLE book');
+        $this->addSql('DROP TABLE calendar');
         $this->addSql('DROP TABLE hairdresser');
         $this->addSql('DROP TABLE pictures');
         $this->addSql('DROP TABLE speciality');
