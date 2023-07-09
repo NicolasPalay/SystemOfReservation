@@ -21,6 +21,9 @@ class Pictures
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     private ?Book $book = null;
 
+    #[ORM\OneToOne(mappedBy: 'picture', cascade: ['persist', 'remove'])]
+    private ?Hairdresser $hairdresser = null;
+
 
     public function getId(): ?int
     {
@@ -47,6 +50,28 @@ class Pictures
     public function setBook(?Book $book): static
     {
         $this->book = $book;
+
+        return $this;
+    }
+
+    public function getHairdresser(): ?Hairdresser
+    {
+        return $this->hairdresser;
+    }
+
+    public function setHairdresser(?Hairdresser $hairdresser): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($hairdresser === null && $this->hairdresser !== null) {
+            $this->hairdresser->setPicture(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($hairdresser !== null && $hairdresser->getPicture() !== $this) {
+            $hairdresser->setPicture($this);
+        }
+
+        $this->hairdresser = $hairdresser;
 
         return $this;
     }

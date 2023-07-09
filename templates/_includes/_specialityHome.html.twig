@@ -1,0 +1,16 @@
+<section class="ca-speciality-container my-5">
+    <div class="ca-background-speciality"><div></div></div>
+    {% for special in speciality %}
+        <article>
+            <div class="ca-box-speciality">
+
+
+                <div class="ca-box-book-hover c-dflex-columns justify-content-between py-3">
+                    <a href="{{ path('speciality_index',{id : special.id}) }}" class="h4"></a>
+                    <a href="#" class="pulse ca-btn h5">Pulse</a>
+                </div>
+                <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ special.picture.name) }}" alt="">
+            </div>
+        </article>
+    {% endfor %}
+</section>

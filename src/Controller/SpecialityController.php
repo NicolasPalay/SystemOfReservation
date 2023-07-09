@@ -10,6 +10,7 @@ use App\Form\SpecialityType;
 use App\Repository\BookRepository;
 use App\Repository\PicturesRepository;
 use App\Repository\SpecialityRepository;
+use App\Service\AddService;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,10 +24,8 @@ class SpecialityController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(SpecialityRepository $specialityRepository): Response
     {
-        $speciality = $specialityRepository->findAll();
-
         return $this->render('speciality/index.html.twig', [
-            'speciality' => $speciality,
+            'speciality' => $specialityRepository->findAll(['id' => 'DESC'])
         ]);
     }
     #[Route('/show/{id}', name: 'show', methods: ['GET'])]
@@ -38,28 +37,16 @@ class SpecialityController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit')]
-    public function add(Request $request, PictureService $pictureService, PicturesRepository $picturesRepository, EntityManagerInterface $entityManager, Speciality $speciality): Response
+    public function update(Request $request, PictureService $pictureService, PicturesRepository
+    $picturesRepository, EntityManagerInterface $entityManager, Speciality $speciality,AddService $addService): Response
     {
         $form = $this->createForm(SpecialityType::class, $speciality);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $picture = $form->get('picture')->getData();
-            $folder = 'pictures';
-            if ($picture !== null) {
-                $pictureName = $pictureService->add($picture, $folder, 300, 300);
-                $newPicture = new Pictures();
-                $newPicture->setName($pictureName);
+           $speciality =$addService->processForm($form, $speciality);
 
-                $speciality->setPicture($newPicture); // Ajoute la nouvelle image à la spécialité
-
-            $entityManager->persist($speciality);
-            $entityManager->flush();
-        }else{
-                $entityManager->persist($speciality);
-                $entityManager->flush();
-            }
             return $this->redirectToRoute('speciality_index');
         }
 
@@ -70,31 +57,21 @@ class SpecialityController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function update(Request $request, PictureService $pictureService, EntityManagerInterface $entityManager): Response
+    public function add(Request $request,
+                        PictureService $pictureService,
+                        EntityManagerInterface $entityManager,
+                        AddService $addService): Response
     {
         $newSpeciality = new Speciality();
         $form = $this->createForm(SpecialityType::class, $newSpeciality);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $picture = $form->get('picture')->getData();
-            $folder = 'pictures';
-            $pictureName = $pictureService->add($picture, $folder, 300, 300);
-            $newPicture = new Pictures();
-            $newPicture->setName($pictureName);
-
-
-
-
-            $newSpeciality = $form->getData();
-            $newSpeciality->setPicture($newPicture);
-            $entityManager->persist($newSpeciality);
-            $entityManager->flush();
-
+            $newSpeciality = $addService->processForm($form, $newSpeciality );
 
             return $this->redirectToRoute('speciality_index');
         }
         return $this->render('speciality/new.html.twig', [
-
             'form' => $form->createView(),
             'speciality'=>$newSpeciality
 
