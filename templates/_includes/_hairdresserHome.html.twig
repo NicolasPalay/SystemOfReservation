@@ -1,12 +1,13 @@
-x<section class="ca-hairdresser-container my-5">
+<section class="ca-hairdresser-container my-5">
     {% for hairdresser in hairdressers %}
         <article>
             <div class="ca-box-hairdresser">
 
                 <div class="c-dflex-columns justify-content-between py-3">
-                   <a href="{{ path('hairdresser_show', {id:hairdresser.id}) }}" class="pulse ca-btn h5">{{ hairdresser.user.fullName }}</a>
-                </div>
-                <a href="{{ path('book_show', {id:hairdresser.id}) }}"><img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt=""></a>
+                    <a href="{{ path('book_show', {id:hairdresser.id}) }}"><img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt=""></a>
+                    <a href="{{ path('hairdresser_show', {id:hairdresser.id}) }}" class="pulse ca-btn h5 ca-ahref-hairdesser">{{ hairdresser.user.fullName }}</a>
+
+            </div>
             </div>
         </article>
     {% endfor %}
