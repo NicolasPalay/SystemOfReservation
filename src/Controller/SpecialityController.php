@@ -44,6 +44,7 @@ class SpecialityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
            $speciality =$addService->processForm($form, $speciality);
 
             return $this->redirectToRoute('speciality_index');

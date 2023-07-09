@@ -20,12 +20,13 @@ class SpecialityType extends AbstractType
                 'multiple'=>false,
                 'label'=>'Ajouter une photo',
                 'mapped'=>false,
+                'required' => false,
                 'attr' => [
                     'accept' => 'image/jpeg, image/png, image/gif',
                     'onchange' => "previewPictures(this)"
                 ]])
         ;
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

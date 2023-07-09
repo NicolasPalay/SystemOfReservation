@@ -16,8 +16,8 @@ class PictureService
 
     public function add(UploadedFile $picture,
                         ?string      $folder = '',
-                        ?int         $width = 250,
-                        ?int         $height = 250): string
+                        ?int         $width = 300,
+                        ?int         $height = 300): string
     {
         // Generate a unique name
         $filename = uniqid('hair') . '.jpg';
