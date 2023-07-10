@@ -67,6 +67,15 @@ class BookController extends AbstractController
         ]);
     }
 
+    /**
+     *
+     * @aad Book new()
+     * @param Request $request
+     * @param PictureService $pictureService
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @throws \Exception
+     */
     #[Route('/new', name: 'new')]
     public function add(Request $request, PictureService $pictureService, EntityManagerInterface
     $entityManager): Response
