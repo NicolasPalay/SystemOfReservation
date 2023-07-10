@@ -6,6 +6,7 @@ use App\Entity\Hairdresser;
 use App\Entity\Pictures;
 use App\Form\HairdresserType;
 use App\Repository\HairdresserRepository;
+use App\Service\AddService;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,28 +27,33 @@ class HairdressController extends AbstractController
 
 
     #[Route('/new', name: 'new')]
-    public function add(Request $request, PictureService $pictureService, EntityManagerInterface $entityManager): Response
+    public function add(Request $request, PictureService $pictureService, EntityManagerInterface $entityManager,AddService $addService): Response
     {
         $newHairdresser = new Hairdresser();
         $form = $this->createForm(HairdresserType::class, $newHairdresser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $picture = $form->get('picture')->getData();
-            $folder = 'pictures';
-            $pictureName = $pictureService->add($picture, $folder, 300, 300);
-            $newPicture = new Pictures();
-            $newPicture->setName($pictureName);
-
-            $newHairdresser = $form->getData();
-            $newHairdresser->setPicture($newPicture);
-            $entityManager->persist($newHairdresser);
-            $entityManager->flush();
+            $newHairdresser = $addService->processForm($form, $newHairdresser);
 
         }
         return $this->render('hairdress/new.html.twig', [
         'form' => $form->createView(),
         'hairdresser' => $newHairdresser,
             ]);
+    }
+    #[Route('/edit/{id}', name: 'edit')]
+    public function update(Request $request, AddService $addService,PictureService $pictureService, EntityManagerInterface $entityManager, Hairdresser $hairdresser): Response
+    {
+        $form = $this->createForm(HairdresserType::class, $hairdresser);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form -> isValid()) {
+            $hairdresser = $addService->processForm($form, $hairdresser);
+
+        }
+        return $this->render('hairdress/new.html.twig', [
+            'form' => $form->createView(),
+            'hairdresser' => $hairdresser,
+        ]);
     }
     #[Route('show/{id}', name: 'show', methods: ['GET'])]
     public function show(Hairdresser $hairdresser): Response
