@@ -1,0 +1,26 @@
+.ca-h1{
+    margin-bottom:-50px;
+    font-family: var(--text-font);
+}
+.ca-h1-script{
+    font-family: var(--script-font);
+    margin-bottom: 50px;
+}
+.ca-book-background{
+    background-color: var(--background);
+    padding: 30px;
+    margin:0
+}
+.img-book{
+    width: 26%;
+    display: flex;
+   }
+.img-book img{
+    width: 100%;
+    height: auto;
+}
+.ca-book-content{
+    width:60%;
+    text-align: justify;
+    margin:0;
+}
