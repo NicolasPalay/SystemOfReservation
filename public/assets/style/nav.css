@@ -1,0 +1,14 @@
+.ca-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 1000;
+}
+.ca-logo {
+    font-family: var(--script-font);
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.navbar-expand-lg .navbar-nav .nav-link{ padding:10px 30px}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos créations{% endblock %}
+
+{% block body %}
+<h1 class="BookController">Voici toutes nos créations</h1>
+{% for special in speciality %}
+    <a href="{{ path('speciality_show', { id: special.id }) }}">{{ special.nameSpeciality }}</a>
+
+{% if special.picture %}
+     <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ special.picture.name) }}" alt="">
+{% endif %}
+    <a href="{{ path('speciality_delete',{ id: special.id }) }}">delete</a>
+    {% endfor %}
+
+{% endblock %}

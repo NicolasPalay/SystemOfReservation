@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!{% endblock %}
+
+{% block body %}
+   <h1>modifier cette coiffure</h1>
+    {{ include('book/_form.html.twig', {'button_label': 'Valider'}) }}
+    {% for image in book.pictures %}
+        <a href="{{path('pictures_delete', {id: image.id})}}">
+            <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
+        </a>
+    {% endfor %}
+{% endblock %}

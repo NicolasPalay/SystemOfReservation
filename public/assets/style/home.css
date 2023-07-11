@@ -1,0 +1,150 @@
+/*bagniere*/
+.paraleloPink {
+    width: 100%;
+    height: 40vh;
+    background: var(--background);
+    position: relative;
+    transform: skewY(-3deg);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:15%;
+    margin-bottom:100px;
+}
+.paraleloPink >div{
+    width:385px
+}
+
+.paraleloPink img {
+    position: absolute;
+    width: 23%;
+    min-width: 350px;
+    left:16%;
+    bottom: 0
+}
+.paraleloPink p {
+    font-family: var(--script-font);
+    font-size: 1.7rem;
+    position: relative;
+    text-align: center;
+    width: 330px;
+}
+
+/*books*/
+.ca-book-container{
+    display:flex; justify-content: space-around; align-items: center;width:70% ;flex-wrap: wrap;margin: 0 auto;position: relative;
+}
+.ca-book-container article{
+    width: 30%;
+    min-width: 266px;
+margin:30px 0;
+    border-radius: var(--border-radius);
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);}
+.ca-rotation{rotate: 3deg;
+}
+.c-dflex-columns{
+    display: flex;flex-direction: column;align-items: center;
+}
+
+.ca-box-book,.ca-box-speciality{position: relative}
+
+
+.ca-box-book-hover{ z-index:100;position: absolute; top: 0; right: 0; width: 0; height: 100%; background: rgba(250,224,223,0.5); opacity: 0; transition: all 0.5s ease;
+    text-align: center; padding: 0 20px;}
+.ca-box-book-hover:nth-child(odd){left: 0;}
+.ca-box-book:hover .ca-box-book-hover{opacity: 1;width: 100%}
+.ca-box-book img{width:100%;border-radius: var(--border-radius);box-shadow: 0 0 10px rgba(250,224,223, 0.7);transition: var(--transition);}
+
+
+
+
+/*speciality*/
+.ca-speciality-container{display: flex; flex-direction: row;justify-content: space-around; align-items: center;flex-wrap: wrap;margin: 0 auto;position: relative;}
+.ca-background-speciality{position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;align-items: center}
+.ca-background-speciality >div{width:100%;height: 50vh;background: var(--background)}
+.ca-box-speciality-hover{cursor: pointer; z-index:100;position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: rgba(250,224,223,0.5);  transition: all 0.5s ease;
+    text-align: center; padding: 45% 20px;}
+.ca-box-speciality-hover a{width: 100%; height: 100%; display: flex;align-items: center;justify-content: center; text-decoration: none; font-size: 1.5rem; font-family: var(--text-font); transition: var(--transition)}
+.ca-box-speciality-hover:hover{opacity: 0;}
+.ca-speciality-container article {
+    width: 30%;
+    min-width: 266px;
+    margin: 30px 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+/*Hairdresser*/
+.ca-hairdresser-container{position: relative; display: flex; justify-content: center; flex-wrap: wrap}
+.ca-hairdresser-container article{width: 30%; min-width: 266px; }
+.ca-box-hairdresser{position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px}
+.ca-box-hairdresser img{border-radius: 100%;margin-bottom:20px;box-shadow: 0 0 10px rgba(250,224,223, 0.7);transition: var(--transition);}
+.ca-btn.ca-ahref-hairdesser{font-size:1.2rem;padding: 0.5em 1.5em;}
+
+@media screen and (max-width: 1990px) {
+    .ca-book-container{
+        width: 80%;
+    }
+    .ca-speciality-container article {
+        margin: 30px;
+    }
+}
+.ca-speciality-container
+@media screen and (max-width: 1224px) {
+    .ca-speciality-container{
+        width: 65%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .paraleloPink {
+
+        margin-top:15%;
+    }
+    .paraleloPink img {
+        min-width: 330px;
+
+        left: 7%;
+    }
+    .paraleloPink p {
+
+        font-size: 1.5rem;
+        position: relative;
+        text-align: center;
+    }
+    .ca-speciality-container article {
+        margin: 30px 20px;
+    }
+}
+@media screen and (max-width: 864px) {
+    .ca-speciality-container{
+        width: 90%;
+    }
+    .ca-speciality-container article {
+        margin: 30px 0;
+    }
+}
+@media screen and (max-width: 600px) {
+    .paraleloPink {
+        justify-content: center;
+        flex-direction: column;
+        margin-top:5%;
+    }
+    .paraleloPink img {
+        min-width: 0;
+top:-5000px  ;
+        left: 0
+    }
+    .paraleloPink p {
+
+        font-size: 1.5rem;
+        position: relative;
+        text-align: center;
+    }
+    .ca-speciality-container{
+        width: 100%;
+    }
+}
