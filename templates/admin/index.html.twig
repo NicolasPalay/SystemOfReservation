@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <h1>Bonjour {{ user.fullname }}</h1>
+    <p>
+        <a href="{{ path('admin_user_list') }}">Liste des utilisateurs</a>
+    </p>
+    <p>
+        <a href="{{ path('admin_user_create') }}">Créer un utilisateur</a>
+    </p>
+
+{% endblock %}
