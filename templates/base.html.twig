@@ -17,7 +17,7 @@
     <body>
        {% include '_includes/navigation.html.twig' %}
        {% block headerH1 %}{% endblock %}
-       <header class="paraleloPink {%  block CssHeader %}{%  endblock%} ">
+       <header class="paraleloPink {%  block CssHeader %}ca-icon-inscription{%  endblock%} ">
 
            <div>
          {% block headerImg %}<img src="{{ asset('assets/uploads/pictures/home.png')}}" alt="">{% endblock %}
@@ -31,7 +31,7 @@
                    </p>{% endblock %}
 
 
-               <a href="#" class="pulse ca-btn py-3">Revervez</a>
+               {% block headerReservation %}   <a href="#" class="pulse ca-btn py-3">Revervez</a>{% endblock %}
            </div>
        </header>
        <div class="c-dflex-columns">
