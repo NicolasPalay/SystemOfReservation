@@ -2,7 +2,7 @@
 
 {% block title %}Register{% endblock %}
  {% block headerH1 %}<h1 class="text-center">Inscription</h1>{% endblock %}
-{%  block CssHeader %}{%  endblock%}
+{%  block CssHeader %}ca-form-header{%  endblock%}
 {% block headerImg %}<img src="{{ asset('assets/uploads/pictures/icon-inscription.png')}}" alt="">{% endblock %}
 {% block headerPara %}<p>
     {{ form_errors(registrationForm) }}
@@ -10,13 +10,11 @@
     {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.email) }}
     {{ form_row(registrationForm.fullName) }}
-    {{ form_row(registrationForm.password, {
-        label: 'Password'
-    }) }}
+    {{ form_row(registrationForm.password) }}
     {{ form_row(registrationForm.agreeTerms) }}
 
 
-    <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn pulse ca-btn">Register</button>
     {{ form_end(registrationForm) }}
 </p>{% endblock %}
 {% block headerReservation %}{% endblock %}

@@ -1,0 +1,34 @@
+.ca-form-header{margin-top: 12%;justify-content: center;transform: skewY(0deg);}
+.ca-form-header img{position: relative;}
+.ca-form-header .ca-rotation{padding : 60px 30px;background: var(--primary-color);rotate: 0deg;}
+.ca-form-header input{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border:none;
+    padding: 0 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.ca-form-header input:focus{
+    transform:scale(1.1);transition: 0.5s all ease-in-out;
+    outline: none;
+    border-bottom: none;
+    border-left: none;
+}
+.ca-form-header label{display: block; margin: 5px 0;font-family: var(--text-font);}
+.ca-form-header form{width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.ca-form-header input[type="checkbox"]{height: 20px;width:50px;margin-top: 10px;}
+.ca-form-header label[for="registration_form_agreeTerms"]{display: inline-block;position: relative; top: -5px;}
+
+.ca-form-header .ca-btn{
+
+    font-family: var(--text-font);
+    color: var(--light-color);
+    cursor: pointer;
+    transition: 0.5s linear;
+}
+.ca-form-header .ca-btn:hover{
+    background: var(--light-color);
+    color: var(--primary-color);
+}
