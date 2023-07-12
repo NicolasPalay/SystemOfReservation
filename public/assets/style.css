@@ -1,12 +1,15 @@
 @import 'style/nav.css';
 @import 'style/home.css';
 @import 'style/book.css';
+@import 'style/form.css';
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Preahvihear&display=swap');
 :root {
-    --primary-color: #7A4A48;
+    --primary-color: #0081a7;
     --secondary-color: #ffea98;
     --background: #FAE0DF;
     --dark-color: #303030;
@@ -55,16 +58,13 @@ img{width:100%;}
     margin: 0.5em;
     padding: 0.5em 2em;
     font-family: var(--text-font);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: 0.25s;
 }
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 var(--primary-color); }
         }
-
-
-.ca-btn {
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: 0.25s;}
 
 
 
