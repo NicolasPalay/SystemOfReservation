@@ -25,7 +25,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Assert\NotNull()]
     private array $roles = [];
 
     /**
