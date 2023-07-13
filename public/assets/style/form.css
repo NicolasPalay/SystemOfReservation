@@ -1,5 +1,6 @@
 .ca-form-header{margin-top: 12%;justify-content: center;transform: skewY(0deg);}
 .ca-form-header img{position: relative;}
+.ca-h1-form{font-family: var(--text-font);position: absolute;;left: 10%; top: 22%;z-index:9999;  }
 .ca-form-header .ca-rotation{padding : 60px 30px;background: var(--primary-color);rotate: 0deg;}
 .ca-form-header input{
     width: 100%;
@@ -31,4 +32,19 @@
 .ca-form-header .ca-btn:hover{
     background: var(--light-color);
     color: var(--primary-color);
+}
+@media screen and (max-width: 900px){
+
+    .ca-h1-form{font-family: var(--text-font);position: absolute;left: 36%; top: 9%;z-index:9999; }
+}
+@media screen and (max-width: 768px){
+    .ca-form-header{margin-top: 20%;}
+    .ca-h1-form{font-family: var(--text-font);position: absolute;left: 36%; top: 9%;z-index:9999; }
+}
+@media screen and (max-width: 600px){
+    .ca-h1-form{font-family: var(--text-font);position: absolute;    left: 30%;
+        top: 15%;z-index:9999; }
+    .ca-form-header{margin-top: 25%;}
+    .ca-form-header .ca-rotation{padding : 40px 30px;}
+
 }
