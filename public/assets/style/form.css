@@ -1,6 +1,10 @@
-.ca-form-header{margin-top: 12%;justify-content: center;transform: skewY(0deg);}
+.ca-form-header{margin-top: 20%;justify-content: center;transform: skewY(0deg);}
+.ca-login{margin-top:10%}
+.ca-form-header .bi{font-size: 84px; position: relative;color: var(--primary-color);
+    left: 50%;
+    margin-left: -42px;}
 .ca-form-header img{position: relative;}
-.ca-h1-form{font-family: var(--text-font);position: absolute;;left: 10%; top: 22%;z-index:9999;  }
+.ca-h1-form{font-family: var(--text-font);text-align: center;}
 .ca-form-header .ca-rotation{padding : 60px 30px;background: var(--primary-color);rotate: 0deg;}
 .ca-form-header input{
     width: 100%;
@@ -18,10 +22,10 @@
     border-left: none;
 }
 .ca-form-header label{display: block; margin: 5px 0;font-family: var(--text-font);}
-.ca-form-header form{width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.ca-form-header form{width: 90%;}
 .ca-form-header input[type="checkbox"]{height: 20px;width:50px;margin-top: 10px;}
 .ca-form-header label[for="registration_form_agreeTerms"]{display: inline-block;position: relative; top: -5px;}
-
+.ca-form-btn{width:100%;text-align: center;}
 .ca-form-header .ca-btn{
 
     font-family: var(--text-font);
@@ -33,18 +37,13 @@
     background: var(--light-color);
     color: var(--primary-color);
 }
-@media screen and (max-width: 900px){
-
-    .ca-h1-form{font-family: var(--text-font);position: absolute;left: 36%; top: 9%;z-index:9999; }
-}
+.ca-text-font{font-family: var(--text-font);}
+.ca-text-font a{color: var(--background);}
 @media screen and (max-width: 768px){
     .ca-form-header{margin-top: 20%;}
-    .ca-h1-form{font-family: var(--text-font);position: absolute;left: 36%; top: 9%;z-index:9999; }
 }
 @media screen and (max-width: 600px){
-    .ca-h1-form{font-family: var(--text-font);position: absolute;    left: 30%;
-        top: 15%;z-index:9999; }
     .ca-form-header{margin-top: 25%;}
-    .ca-form-header .ca-rotation{padding : 40px 30px;}
+    .ca-form-header .ca-rotation{padding : 40px 30px; margin-top: -50px;}
 
 }

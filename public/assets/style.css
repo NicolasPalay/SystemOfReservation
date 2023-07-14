@@ -33,8 +33,8 @@ ul{
 }
 a{cursor: pointer;text-decoration: none;color: var(--primary-color);font-family: var(--text-font);transition: var(--transition);}
 a.ca-link {border-bottom: 3px solid var(--light-color);
-    font-family: var( --text-font);transition: var(--transition)
-
+    font-family: var( --text-font);transition: var(--transition);
+    color: var(--primary-color);
 }
 a.ca-link:hover {
 
