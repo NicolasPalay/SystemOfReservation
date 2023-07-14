@@ -3,7 +3,7 @@
 @import 'style/book.css';
 @import 'style/form.css';
 @import 'style/speciality.css';
-
+@import 'style/footer.css';
 
 
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
@@ -27,6 +27,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+ul{
+    list-style: none;maring:0;padding:0;
 }
 a{cursor: pointer;text-decoration: none;color: var(--primary-color);font-family: var(--text-font);transition: var(--transition);}
 a.ca-link {border-bottom: 3px solid var(--light-color);
