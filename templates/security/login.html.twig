@@ -2,7 +2,7 @@
 
 {% block title %}Log in!{% endblock %}
 
-{%  block CssHeader %}ca-form-header{%  endblock %}
+{%  block CssHeader %}ca-form-header ca-login{%  endblock %}
 {% block headerImg %}<i class="bi bi-person-circle"></i>{% endblock %}
 {% block headerPara %}
     <p>
@@ -25,15 +25,17 @@
 
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}">
-
+    <div class="ca-form-btn">
         <button class="btn pulse ca-btn mt-3" type="submit">
-            Sign in
+            Validez
         </button>
+    </div>
     </form>
     </p>
     <div class="text-center ">
         <em class="ca-text-font" >Pas encore inscris ? <a  href="{{ path('app_register') }}" class="ca-white">Inscrivez-vous !</a></em>
     </div>
+
 {% endblock %}
 {% block headerReservation %}{% endblock %}
 {% block body %}{% endblock %}

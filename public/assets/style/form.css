@@ -1,9 +1,10 @@
-.ca-form-header{margin-top: 12%;justify-content: center;transform: skewY(0deg);}
+.ca-form-header{margin-top: 20%;justify-content: center;transform: skewY(0deg);}
+.ca-login{margin-top:10%}
 .ca-form-header .bi{font-size: 84px; position: relative;color: var(--primary-color);
     left: 50%;
     margin-left: -42px;}
 .ca-form-header img{position: relative;}
-.ca-h1-form{font-family: var(--text-font);}
+.ca-h1-form{font-family: var(--text-font);text-align: center;}
 .ca-form-header .ca-rotation{padding : 60px 30px;background: var(--primary-color);rotate: 0deg;}
 .ca-form-header input{
     width: 100%;
@@ -21,10 +22,10 @@
     border-left: none;
 }
 .ca-form-header label{display: block; margin: 5px 0;font-family: var(--text-font);}
-.ca-form-header form{width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.ca-form-header form{width: 90%;}
 .ca-form-header input[type="checkbox"]{height: 20px;width:50px;margin-top: 10px;}
 .ca-form-header label[for="registration_form_agreeTerms"]{display: inline-block;position: relative; top: -5px;}
-
+.ca-form-btn{width:100%;text-align: center;}
 .ca-form-header .ca-btn{
 
     font-family: var(--text-font);
