@@ -155,7 +155,7 @@ const HAIDRESSERS = ['Gloria Leblanc','Marc Drouet','Annette Dupont'];
                 $speciality->setDuration($spec[0]);
                 $speciality->setContent($spec[1]);
            $speciality->setPicture($this->getReference('picture_' . self::PICTURES[$index]));
-
+$speciality->setRate(rand(17, 100));
             $manager->persist($speciality);
             $this->addReference('speciality_' . $key, $speciality);
             $index++;
