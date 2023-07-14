@@ -20,6 +20,8 @@ class AddService
 
     function processForm($form, $entity)
     {
+        if($form->get('picture')->getData() != null){
+
 
             $picture = $form->get('picture')->getData();
             $folder = 'pictures';
@@ -28,6 +30,7 @@ class AddService
             $newPicture->setName($pictureName);
 
             $entity->setPicture($newPicture);
+        }
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
 
