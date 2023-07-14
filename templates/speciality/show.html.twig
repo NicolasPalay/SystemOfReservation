@@ -1,15 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{speciality.nameSpeciality}}{% endblock %}
+ {% block headerH1 %}<h1 class="ca-h1-form">{{speciality.nameSpeciality}}</h1>{% endblock %}
+{%  block CssHeader %}{%  endblock%}
+
+
+{% block headerImg %}
+    {% if speciality.picture %}
+        <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ speciality.picture.name) }}" alt="{{speciality.nameSpeciality}}">
+    {% endif %}
+{% endblock %}
+                     {% block headerPara %}<p>
+                         <p>Durée : {{ speciality.duration }} min</p>
+                         <p>Tarif : {{ speciality.rate }} €</p>
+                     </p>{% endblock %}
+
 
 {% block body %}
-    <h1>{{speciality.nameSpeciality}}</h1>
 
-   <p> {{ speciality.content }}</p>
-   <p>{{ speciality.duration }} min</p>
-{% if speciality.picture %}
-         <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ speciality.picture.name) }}" alt="">
-{% endif %}
 
-    <<a href="{{ path('speciality_edit', { id: speciality.id }) }}">edit</a>
+   <p class="w-75 mx-auto ca-text-justify"> {{ speciality.content | nl2br}}</p>
+
+
+
 {% endblock %}

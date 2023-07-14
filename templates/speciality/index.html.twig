@@ -1,16 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes nos créations{% endblock %}
-
+{% block title %}Nos tarifs et spécialités{% endblock %}
+{% block headerH1 %} <h1 class="h2 ca-h1 mx-auto text-center">Nos Tarifs</h1>{% endblock %}
+ {% block headerPara %}<p>
+    Le salon Adeline est né d'une passion.<br>
+     La vision d'un visage,<br>
+     d'une silouée nous définie.<br>
+     Nous sommes là à vous révéler.
+ </p>{% endblock %}
 {% block body %}
-<h1 class="BookController">Voici toutes nos créations</h1>
-{% for special in speciality %}
-    <a href="{{ path('speciality_show', { id: special.id }) }}">{{ special.nameSpeciality }}</a>
 
-{% if special.picture %}
-     <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ special.picture.name) }}" alt="">
-{% endif %}
-    <a href="{{ path('speciality_delete',{ id: special.id }) }}">delete</a>
+
+    {% for special in speciality %}
+        <section class="ca-speciality-list d-flex flex-wrap">
+
+            <article class="ca-speciality-index">
+                <a href="{{ path('speciality_show', { id: special.id }) }}">{{ special.nameSpeciality }}</a>
+                <p><em>Durée : {{ special.duration }} min</em> | <em>Tarif : {{ special.rate }} €</em></p>
+                <p></p>
+            </article>
+            <article class="ca-mini-picture">
+                {% if special.picture %}
+                    <a href="{{ path('speciality_show', { id: special.id }) }}">
+                        <img src="{{ asset('assets/uploads/pictures/mini/300x300-' ~ special.picture.name) }}" alt="">
+                    </a>
+                {% endif %}
+
+
+            </article>
+        </section>
     {% endfor %}
 
 {% endblock %}

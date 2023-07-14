@@ -31,6 +31,9 @@ class Speciality
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Pictures $picture = null;
 
+    #[ORM\Column]
+    private ?float $rate = null;
+
     public function __construct()
     {
         $this->hairdresser = new ArrayCollection();
@@ -109,6 +112,18 @@ class Speciality
     public function setPicture(?pictures $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(float $rate): static
+    {
+        $this->rate = $rate;
 
         return $this;
     }
