@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
- {% block headerH1 %}<h1 class="ca-h1-form">Inscription</h1>{% endblock %}
-{%  block CssHeader %}ca-form-header{%  endblock%}
+
+{%  block CssHeader %}ca-form-header{%  endblock %}
 {% block headerImg %}<img src="{{ asset('assets/uploads/pictures/icon-inscription.png')}}" alt="">{% endblock %}
 {% block headerPara %}<p>
+    <h1 class="h3 mb-3 ca-h1-form">Inscription</h1>
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
