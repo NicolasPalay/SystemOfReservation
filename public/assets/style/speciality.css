@@ -1,0 +1,6 @@
+.ca-speciality-list{width:80%; background: var(--background);padding:20px 50px 0;margin:25px auto;}
+.ca-mini-picture{width:100px;margin-top: -50px;}
+.ca-mini-picture img{box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);}
+
+.ca-speciality-index{width:80%;display:flex;flex-direction:column;align-items:start;}
+.ca-text-justify{text-align:justify;}
