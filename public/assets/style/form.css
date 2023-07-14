@@ -36,7 +36,8 @@
     background: var(--light-color);
     color: var(--primary-color);
 }
-
+.ca-text-font{font-family: var(--text-font);}
+.ca-text-font a{color: var(--background);}
 @media screen and (max-width: 768px){
     .ca-form-header{margin-top: 20%;}
 }
