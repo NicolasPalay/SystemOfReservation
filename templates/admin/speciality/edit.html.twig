@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!{% endblock %}
+{%  block CssHeader %}ca-form-header{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form">Modifier cette spécialité</h1>{% endblock %}
+ {% block headerImg %}
+     {%  if speciality.picture is not null %}
+         <a href="{{path('pictures_delete_speciality', {id: speciality.picture.id})}}">
+             <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ speciality.picture.name) }}" alt="">
+         </a>
+
+     {% endif %}
+
+ {% endblock %}
+  {% block headerPara %}
+      {{ include('admin/speciality/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    {% endblock %}
+{% block body %}
+
+
+
+  
+{% endblock %}
+

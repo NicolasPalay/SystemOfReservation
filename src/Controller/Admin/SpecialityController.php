@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Book;
 use App\Entity\Pictures;
@@ -18,24 +18,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/speciality', name: 'speciality_')]
+#[Route('admin/speciality', name: 'admin_speciality_')]
 class SpecialityController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(SpecialityRepository $specialityRepository): Response
-    {
-        return $this->render('speciality/index.html.twig', [
-            'speciality' => $specialityRepository->findAll(['id' => 'ASC'])
-        ]);
-    }
-    #[Route('/show/{id}', name: 'show', methods: ['GET'])]
-    public function show(Speciality $speciality): Response
-    {
-        return $this->render('speciality/show.html.twig', [
-            'speciality' => $speciality,
-        ]);
-    }
-
     #[Route('/edit/{id}', name: 'edit')]
     public function update(Request $request, PictureService $pictureService, PicturesRepository
     $picturesRepository, EntityManagerInterface $entityManager, Speciality $speciality,AddService $addService): Response
@@ -50,7 +35,7 @@ class SpecialityController extends AbstractController
             return $this->redirectToRoute('speciality_index');
         }
 
-        return $this->render('speciality/edit.html.twig', [
+        return $this->render('admin/speciality/edit.html.twig', [
             'form' => $form->createView(),
             'speciality' => $speciality
         ]);
@@ -71,7 +56,7 @@ class SpecialityController extends AbstractController
 
             return $this->redirectToRoute('speciality_index');
         }
-        return $this->render('speciality/new.html.twig', [
+        return $this->render('admin/speciality/new.html.twig', [
             'form' => $form->createView(),
             'speciality'=>$newSpeciality
 
@@ -85,7 +70,4 @@ class SpecialityController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('speciality_index');
     }
-
-
-
 }
