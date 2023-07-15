@@ -1,11 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
-{% block headerPara %}<h1 class="h2 ca-h1-script mx-auto text-center">Bonjour {{ user.fullname }}</h1>{% endblock %}
+{% block title %}Hello Admin{% endblock %}
+{% block headerH1 %}<h1 class="h2 ca-h1 mx-auto text-center">
+    Bonjour {{ admin.fullname }}</h1>{% endblock %}
+{% block headerImg %}
+
+
+{% endblock %}
+{% block CssHeader %}ca-form-header ca-admin-nav{% endblock %}
+{% block headerPara %}
+    <ul class="navbar-footer">
+    <li class="">
+        <a class="ca-link" aria-current="page" href="{{ path('admin_speciality_new') }}">Ajouter une
+            spécialité</a>
+    </li>
+    <li class="">
+        <a class="ca-link" aria-current="page" href="{{ path('admin_speciality_new') }}">Ajouter une
+            spécialité</a>
+    </li>
+    <li class="">
+        <a class="ca-link" href="#">Le salon</a>
+    </li>
+
+    </ul>{% endblock %}
+{% block headerReservation %}{% endblock %}
 {% block body %}
-    <h1>Bonjour {{ user.fullname }}</h1>
-    <p>
+    <section class="ca-section">
+        {% for user in users %}<li>N° id : {{ user.id }} <a href="{{ path('user_edit', { id: user.id}) }}"> modifier cet utilisation</a></li>
+            <ul class="ca-user-admin">
 
-    </p>
+                <li>Nom : {{ user.fullname }} </li>
+                <li>Email : <em>{{ user.email }}</em></li>
+                <li>Role : <em>{{ user.roles|join(', ') }}</em></li>
+            </ul>
 
+        {% endfor %}
+    </section>
 {% endblock %}
