@@ -1,0 +1,5 @@
+.ca-admin-nav li a.ca-link {border:none;color:white;}
+.ca-admin-nav li {margin:5px 20px;padding:5px 20px;}
+.ca-user-admin{padding:20px; background: var(--background);display: flex;flex-wrap: wrap;justify-content: space-between}
+.ca-user-admin liwidth:30%%}
+.ca-user-admin li:first-child{width:10%}
