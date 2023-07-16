@@ -6,7 +6,7 @@
 .ca-form-header img{position: relative;}
 .ca-h1-form{font-family: var(--text-font);text-align: center;}
 .ca-form-header .ca-rotation{padding : 60px 30px;background: var(--primary-color);rotate: 0deg;}
-.ca-form-header input {
+.ca-form-header input, .ca-form-header select{
     width: 100%;
     height: 40px;
     border-radius: 5px;
