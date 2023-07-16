@@ -34,9 +34,13 @@ class Speciality
     #[ORM\Column]
     private ?float $rate = null;
 
+    #[ORM\OneToMany(mappedBy: 'speciality', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->hairdresser = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +128,36 @@ class Speciality
     public function setRate(float $rate): static
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setSpeciality($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getSpeciality() === $this) {
+                $booking->setSpeciality(null);
+            }
+        }
 
         return $this;
     }

@@ -31,8 +31,11 @@ class BookingController extends AbstractController
         $form = $this->createForm(BookingType::class, $newBooking);
         $form->handleRequest($request);
 
+    $calendar = $this->reservation($bookingRepository);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
             $newBooking = $form->getData();
             $newBooking->setHairdresser($form->get('hairdresser')->getData());
@@ -42,11 +45,43 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('app_booking_new');
         }
         return $this->render('booking/new.html.twig', [
-'form' => $form->createView(),
+            'form' => $form->createView(),
             'booking' => $newBooking,
             'users' => $users,
-
+            'data' => $calendar->getContent()
 
         ]);
     }
+    public function reservation(BookingRepository $bookingRepository): Response {
+
+        $events = $bookingRepository->findAll();
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $start = $event->getDate();
+            $duration = $event->getSpeciality()->getDuration();
+            $hairdresser = $event->getHairdresser();
+            $backgroundColor = '';
+
+            if ($hairdresser->getId() == 4) {
+                $backgroundColor = 'orange';
+            } elseif ($hairdresser->getId() == 5) {
+                $backgroundColor = 'blue';
+            } elseif ($hairdresser->getId() == 6) {
+                $backgroundColor = 'black';
+            }
+
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $start->format('Y-m-d H:i:s'),
+                $end = $start->modify("+{$duration} minutes"),
+                'end' => $end->format('Y-m-d H:i:s'),
+                'backgroundColor' => $backgroundColor,
+            ];
+        }
+
+        $data = json_encode($rdvs);
+        return new Response($data, 200, ['Content-Type' => 'application/json']);
+    }
+
 }
