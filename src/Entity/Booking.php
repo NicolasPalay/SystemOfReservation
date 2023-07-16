@@ -24,6 +24,9 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?Hairdresser $hairdresser = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?Speciality $speciality = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Booking
     public function setHairdresser(?Hairdresser $hairdresser): static
     {
         $this->hairdresser = $hairdresser;
+
+        return $this;
+    }
+
+    public function getSpeciality(): ?Speciality
+    {
+        return $this->speciality;
+    }
+
+    public function setSpeciality(?Speciality $speciality): static
+    {
+        $this->speciality = $speciality;
 
         return $this;
     }
