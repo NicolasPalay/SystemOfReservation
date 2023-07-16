@@ -21,7 +21,7 @@
     border-bottom: none;
     border-left: none;
 }
-.ca-form-header label{display: block; margin: 5px 0;font-family: var(--text-font);}
+.ca-form-header label{display: block; margin: 5px 0;font-family: var(--text-font);color : white;}
 .ca-form-header form{width: 90%;}
 .ca-form-header input[type="checkbox"]{height: 20px;width:50px;margin-top: 10px;}
 .ca-form-header label[for="registration_form_agreeTerms"]{display: inline-block;position: relative; top: -5px;}

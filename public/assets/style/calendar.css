@@ -33,3 +33,10 @@
     #calendar{width: 75%; }
 
 }
+
+.infoRDV{
+    background: white;
+    opacity: 0.7;
+    padding: 30px;
+    font-family: var(--text-font);
+}

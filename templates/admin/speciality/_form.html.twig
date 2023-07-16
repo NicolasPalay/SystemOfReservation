@@ -14,6 +14,8 @@
     <!-- L'emplacement pour les images prévisualisées -->
 </div>
 
+<div class="ca-form-btn">
+    <button type="submit" class="btn pulse ca-btn">{{ button_label|default('Valider') }}</button>
+    {{ form_end(form) }}
+</div>
 
-<button class="iv-btn">{{ button_label|default('Valider') }}</button>
-{{ form_end(form) }}
