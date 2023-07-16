@@ -2,7 +2,26 @@
 
 {% block title %}Hello BookController!{% endblock %}
 {%  block CssHeader %}ca-form-header{%  endblock %}
-{% block headerImg %}<i class="bi bi-calendar3"></i>{% endblock %}
+{% block headerImg %}
+    <div class="infoRDV" >
+
+        {% if userRdV  %}
+
+        <ul>
+
+            <li>Félicitation <strong>{{ userRdV.client.fullName }}</strong></li>
+            <li>vous avez pris rendez-vous avec <br><strong>{{ userRdV.hairdresser.user.fullName }}</strong></li>
+            <li>pour une scéance de <strong>{{ userRdV.speciality.nameSpeciality }}</strong></li>
+            <li>le <strong>{{ userRdV.date|date('d/m/Y') }} à {{ userRdV.date|date('H:i') }}</strong></li>
+            <li>pour un montant de <strong>{{ userRdV.speciality.rate }} €</strong></li>
+            <li>et une durée de <strong>{{ userRdV.speciality.duration }} min</strong></li>
+        </ul>
+            </div>
+        {% else %}
+        <i class="bi bi-calendar3"></i>
+{% endif %}
+
+{% endblock %}
 {% block headerPara %}
 <h1 class="h3 mb-3 ca-h1-form">Prenez rendez-vous</h1>
     {{ include('booking/_form.html.twig', {'button_label': 'Valider'}) }}
@@ -26,7 +45,7 @@
     timeZone: 'Europe/Paris',
     locale: 'fr',
     headerToolbar: {
-    left: 'prev,next today',
+    left: 'prev,next',
     center: 'title',
     right: 'dayGridMonth,timeGridWeek'
 },

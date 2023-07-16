@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg ca-nav">
-    <a class="navbar-brand ca-logo" href="#">Salon Adeline</a>
+    <a class="navbar-brand ca-logo" href="{{ path('home_index') }}">Salon Adeline</a>
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,11 +18,17 @@
                     <a class="nav-link ca-link" href="{{ path('hairdresser_index') }}">Nos coiffeurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ca-link" href="{{ path('speciality_index') }}">Contactez-nous</a>
+                    <a class="nav-link ca-link" href="{{ path('app_booking_index') }}">Rendez-vous</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link ca-link" href="{{ path('app_login') }}">Connexion</a>
-                </li>
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link ca-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link ca-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_admin') }}" class="nav-link ca-link">Accès Admin</a>
                 {% endif %}

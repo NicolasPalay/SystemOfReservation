@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -23,5 +25,12 @@ class AdminController extends AbstractController
             'admin' => $admin,
 
         ]);
+    }
+    #[Route('/{id}', name: 'user_delete', methods: ['POST', 'GET'])]
+    public function delete(User $user, UserRepository $userRepository): Response
+    {
+        $userRepository->remove($user, true);
+        $this->addFlash('success', 'user supprimé');
+        return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
 }

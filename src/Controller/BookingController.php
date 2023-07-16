@@ -26,7 +26,9 @@ class BookingController extends AbstractController
     $userRepository, BookingRepository $bookingRepository)
     : Response
     {
-        $users = $users = $userRepository->findAll(['roles' => 'ROLE_HAIRDRESSER']);
+        $userRdV = $bookingRepository->findOneBy(['client' => $this->getUser()], ['date' => 'DESC']);
+
+       $users = $userRepository->findAll(['roles' => 'ROLE_HAIRDRESSER']);
         $newBooking = new Booking();
         $form = $this->createForm(BookingType::class, $newBooking);
         $form->handleRequest($request);
@@ -48,7 +50,8 @@ class BookingController extends AbstractController
             'form' => $form->createView(),
             'booking' => $newBooking,
             'users' => $users,
-            'data' => $calendar->getContent()
+            'data' => $calendar->getContent(),
+            'userRdV' => $userRdV,
 
         ]);
     }
@@ -59,6 +62,7 @@ class BookingController extends AbstractController
 
         foreach ($events as $event) {
             $start = $event->getDate();
+            $end = clone $start;
             $duration = $event->getSpeciality()->getDuration();
             $hairdresser = $event->getHairdresser();
             $backgroundColor = '';
@@ -74,7 +78,7 @@ class BookingController extends AbstractController
             $rdvs[] = [
                 'id' => $event->getId(),
                 'start' => $start->format('Y-m-d H:i:s'),
-                $end = $start->modify("+{$duration} minutes"),
+                $end = $end->modify("+{$duration} minutes"),
                 'end' => $end->format('Y-m-d H:i:s'),
                 'backgroundColor' => $backgroundColor,
             ];

@@ -4,5 +4,7 @@
  {{ form_row(form.speciality) }}
 
 
-<button class="btn pulse ca-btn">{{ button_label|default('Valider') }}</button>
-{{ form_end(form) }}
+<div class="ca-form-btn">
+    <button type="submit" class="btn pulse ca-btn">{{ button_label|default('Valider') }}</button>
+    {{ form_end(form) }}
+</div>

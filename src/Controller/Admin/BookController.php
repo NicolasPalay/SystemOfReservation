@@ -20,9 +20,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class BookController extends AbstractController
 {
      #[Route('/edit/{id}', name: 'edit')]
-    public function update(Request $request, PictureService $pictureService, PicturesRepository
-    $picturesRepository, EntityManagerInterface $entityManager, Book $book): Response
+    public function update(Request $request,
+                           PictureService $pictureService,
+                           EntityManagerInterface $entityManager,
+                           Book $book): Response
     {
+
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -63,8 +66,9 @@ class BookController extends AbstractController
      */
     #[Route('/new', name: 'new')]
     public function add(Request $request, PictureService $pictureService, EntityManagerInterface
-    $entityManager): Response
+    $entityManager,BookRepository $bookRepository): Response
     {
+        $books = $bookRepository->findAll();
         $newBook = new Book();
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
@@ -87,12 +91,13 @@ class BookController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('book_index');
+            return $this->redirectToRoute('admin_book_new');
         }
         return $this->render('admin/book/new.html.twig', [
 
             'form' => $form->createView(),
-            'book'=>$newBook
+            'book'=>$newBook,
+            'books' => $books
 
         ]);
     }
