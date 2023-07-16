@@ -1,9 +1,8 @@
 {{ form_start(form) }}
-
-         {{ form_row(form.date) }}
+{{ form_widget(form.date) }}
   {{ form_row(form.hairdresser) }}
+ {{ form_row(form.speciality) }}
 
 
-
-<button class="iv-btn">{{ button_label|default('Valider') }}</button>
+<button class="btn pulse ca-btn">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}

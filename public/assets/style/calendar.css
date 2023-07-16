@@ -1,0 +1,35 @@
+#calendar{width: 50%; }
+.fc .fc-view-harness {height: 540px !important;margin-bottom: 40px;}
+/*.fc-scrollgrid-sync-table{display: none}*/
+
+.fc-toolbar .fc-button-primary:not(:disabled).fc-button-active, .fc-toolbar .fc-button-primary:not(:disabled):active{
+    background-color: var(--primary-color);;
+    border-color: var(--background);
+    color: var(--background);
+}
+.fc-toolbar .fc-button-primary:not(:disabled).fc-button-active:hover, .fc-toolbar .fc-button-primary:not(:disabled):active:hover{
+
+    background-color: var(--background);;
+    border-color: var(--background);
+    color: var(--primary-color);
+}
+.fc .fc-button-primary{
+    background-color: var(--background);;
+    border-color: var(--background);
+    color: var(--primary-color);
+}
+.fc .fc-button-primary:hover{
+     background-color: var(--primary-color);;
+     border-color: var(--background);
+     color: var(--background);
+ }
+.fc-toolbar-title{
+    font-family: var(--text-font);
+    color: var(--primary-color);
+    font-size: 1.2em !important;
+}
+
+@media (max-width: 768px) {
+    #calendar{width: 75%; }
+
+}
