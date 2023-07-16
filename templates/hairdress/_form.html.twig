@@ -1,9 +1,8 @@
 {{ form_start(form) }}
 
-         {{ form_row(form.user) }}
-{% for speciality in form.specialities %}
-            {{ form_row(speciality) }}
-{% endfor %}
+         {{ form_row(form) }}
+
+
  {% if hairdresser.id is empty %}
      {# Champ obligatoire pour la création #}
      {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}

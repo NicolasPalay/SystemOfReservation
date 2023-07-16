@@ -1,6 +1,6 @@
 {{ form_start(form) }}
-         {{ form_widget(form.titleBook) }}
-            {{ form_widget(form.content) }}
+         {{ form_row(form.titleBook) }}
+            {{ form_row(form.content) }}
 
     {% if book.id is empty %}
         {# Champ obligatoire pour la création #}
