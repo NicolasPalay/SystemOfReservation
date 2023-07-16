@@ -24,9 +24,13 @@ class Hairdresser
     #[ORM\OneToOne(inversedBy: 'hairdresser', cascade: ['persist', 'remove'])]
     private ?Pictures $picture = null;
 
+    #[ORM\OneToMany(mappedBy: 'hairdresser', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->specialities = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +85,36 @@ class Hairdresser
     public function setPicture(?Pictures $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setHairdresser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getHairdresser() === $this) {
+                $booking->setHairdresser(null);
+            }
+        }
 
         return $this;
     }

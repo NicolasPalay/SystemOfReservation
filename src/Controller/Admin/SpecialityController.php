@@ -2,14 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Book;
-use App\Entity\Pictures;
 use App\Entity\Speciality;
-use App\Form\BookType;
 use App\Form\SpecialityType;
-use App\Repository\BookRepository;
 use App\Repository\PicturesRepository;
-use App\Repository\SpecialityRepository;
+
 use App\Service\AddService;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;

@@ -50,7 +50,7 @@ class HairdressController extends AbstractController
             $hairdresser = $addService->processForm($form, $hairdresser);
 
         }
-        return $this->render('hairdress/new.html.twig', [
+        return $this->render('hairdress/edit.html.twig', [
             'form' => $form->createView(),
             'hairdresser' => $hairdresser,
         ]);
