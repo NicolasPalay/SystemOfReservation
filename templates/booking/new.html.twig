@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello BookController!{% endblock %}
-{%  block CssHeader %}ca-form-header{%  endblock %}
+{%  block CssHeader %}ca-form-header ca-margin-small{%  endblock %}
 {% block headerImg %}
     <div class="infoRDV" >
 
@@ -16,11 +16,11 @@
             <li>pour un montant de <strong>{{ userRdV.speciality.rate }} €</strong></li>
             <li>et une durée de <strong>{{ userRdV.speciality.duration }} min</strong></li>
         </ul>
-            </div>
+
         {% else %}
         <i class="bi bi-calendar3"></i>
 {% endif %}
-
+    </div>
 {% endblock %}
 {% block headerPara %}
 <h1 class="h3 mb-3 ca-h1-form">Prenez rendez-vous</h1>
