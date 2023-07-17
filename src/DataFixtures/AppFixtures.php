@@ -137,8 +137,8 @@ const HAIDRESSERS = ['Gloria Leblanc','Marc Drouet','Annette Dupont'];
 
         /*user role admin*/
         $user = new User();
-        $user->setEmail($this->faker->email);
-        $user->setFullName($this->faker->name);
+        $user->setEmail('sam@ca.fr');
+        $user->setFullName('Adeline Silver');
         $user->setRoles(['ROLE_ADMIN']);
         $user->setPlainPassword('123456');
         $manager->persist($user);
