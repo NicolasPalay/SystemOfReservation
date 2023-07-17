@@ -19,10 +19,10 @@
     color: var(--primary-color);
 }
 .fc .fc-button-primary:hover{
-     background-color: var(--primary-color);;
-     border-color: var(--background);
-     color: var(--background);
- }
+    background-color: var(--primary-color);;
+    border-color: var(--background);
+    color: var(--background);
+}
 .fc-toolbar-title{
     font-family: var(--text-font);
     color: var(--primary-color);
