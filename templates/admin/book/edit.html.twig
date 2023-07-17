@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello BookController!{% endblock %}
+{%  block CssHeader %}ca-form-header{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form">Modifier {{ book.titleBook }}</h1>{% endblock %}
+ {% block headerImg %}<div id="image-container">
+     <!-- L'emplacement pour les images prévisualisées -->
+ </div>{% endblock %}
+{% block headerReservation %}{% endblock %}
+  {% block headerPara %}
+      {{ include('admin/book/_form.html.twig', {'button_label': 'mettre à jour'}) }}
 
+  {% endblock %}
 {% block body %}
-   <h1>modifier cette coiffure</h1>
-    {{ include('_form.html.twig', {'button_label': 'Valider'}) }}
+
     {% for image in book.pictures %}
         <a href="{{path('pictures_delete', {id: image.id})}}">
             <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
