@@ -15,7 +15,7 @@
                     <a href="{{ path('book_show', {id:book.id}) }}" class="h4">{{ book.titleBook }}</a>
                     <a href="{{ path('book_show', {id:book.id}) }}" class="pulse ca-btn h5">Ouvrir</a>
                 </div>
-                <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="">
+                <img  src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="{{ book.titleBook }}">
             </div>
         </article>
     {% endfor %}
