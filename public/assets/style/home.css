@@ -79,11 +79,39 @@ margin:30px 0;
 }
 
 /*Hairdresser*/
-.ca-hairdresser-container{position: relative; display: flex; justify-content: center; flex-wrap: wrap}
-.ca-hairdresser-container article{width: 30%; min-width: 266px; }
+.ca-hairdresser-container{position: relative; display: flex; justify-content: space-around; flex-wrap: wrap}
+.ca-hairdresser-container article{width: 25%; min-width: 266px; }
 .ca-box-hairdresser{position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 20px}
-.ca-box-hairdresser img{border-radius: 100%;margin-bottom:20px;box-shadow: 0 0 10px rgba(250,224,223, 0.7);transition: var(--transition);}
+.ca-box-hairdresser img{border-radius: 100%;box-shadow: 0 0 10px rgba(250,224,223, 0.7);transition: var(--transition);}
 .ca-btn.ca-ahref-hairdesser{font-size:1.2rem;padding: 0.5em 1.5em;}
+/*rotation hairdresser*/
+.box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+.box:hover .box-inner {
+    transform: rotateY(180deg);
+}
+.box-front,
+.box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.box-front {
+    background-color: #cccccc;
+    color: #111111;
+}
+.box-back {
+    background-color: #8ebf42;
+    color: #eeeeee;
+    transform: rotateY(180deg);
+}
 
 @media screen and (max-width: 1990px) {
     .ca-book-container{
