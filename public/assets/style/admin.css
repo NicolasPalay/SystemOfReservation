@@ -1,18 +1,26 @@
+#navbarNav{margin-left:20px}
+
+.ca-admin-navBar{margin:10px;padding:10px 15px; border-radius: 20px; border: 2px solid var(--primary-color);
+background: url('../uploads/pictures/nav.png') no-repeat center center;width:70px;height:65px;
+background-size:50px 45px;}
+.ca-admin-navBar:hover{border: 2px solid var(--background);
+    background: url('../uploads/pictures/navHover.png') no-repeat center center;background-size:50px 45px;}
 .ca-admin-nav li a.ca-link {border:none;color:white;}
 .ca-admin-nav li {margin:5px 20px;padding:5px 20px;}
 .ca-user-admin{padding:20px; background: var(--background);display: flex;flex-wrap: wrap;justify-content: space-between;}
 .ca-user-admin li{width:30%}
-
-.ca-admin-nav{ margin-top: 15%;}
+.fc .fc-toolbar.fc-header-toolbar{margin-bottom:0!important;}
+.fc .fc-button{padding: 0.2em 0.30em;}
 .ca-admin-nav #calendar{width: 100%; margin-top: 20%;
 background: white}
 
 .ca-mini-img-admin{max-width: 100px;height: 100px;
 }
 .ca-section{width: 80%; margin: 0}
+
 .ca-admin-nav .ca-rotation{display: none;}
 .ca-admin-nav .fc-col-header{max-width: 100%;}
-.ca-admin-nav >div{width: 50%;}
+.ca-admin-nav >div{width: 80%;margin: 0 auto;}
 #image-container{display: flex;flex-wrap: wrap;width: 100%}
 #image-container img{min-width: 25%;
     height: fit-content;}
