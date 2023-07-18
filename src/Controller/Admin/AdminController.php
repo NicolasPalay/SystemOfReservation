@@ -32,6 +32,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     #[Route('/admin/user', name: 'app_admin_user')]
     #[IsGranted('ROLE_ADMIN')]
     public function userAdmin(UserRepository $userRepository): Response
@@ -47,9 +48,16 @@ class AdminController extends AbstractController
     }
     #[Route('delete/{id}', name: 'user_delete', methods: ['POST', 'GET'])]
     public function delete(User $user, UserRepository $userRepository): Response
+
     {
+        $user = $userRepository->find(['id' => $user->getId()]);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur introuvable');
+        }
+
         $userRepository->remove($user, true);
-        $this->addFlash('success', 'user supprimé');
+        $this->addFlash('success', 'Utilisateur supprimé');
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
 }

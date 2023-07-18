@@ -1,16 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HairdressController!{% endblock %}
+{% block title %}Hello Hairdresser{% endblock %}
+{% block headerImg %}<img src="{{ asset('assets/uploads/pictures/icon-hairdresser.png')}}" alt="">{% endblock %}
 
+{% block headerH1 %} <h1 class="h2 ca-h1 mx-auto text-center">Nos coiffeurs(ses)</h1>{% endblock %}
+{% block headerPara %}<p>
+    Le talent de nos 3 spécialistes<br>
+    se révèlent à chaque coup de ciseaux.<br>
+    Tous prennent soins de vous et<br>
+    de vos cheveux avec passion.<br>
+</p>{% endblock %}
 {% block body %}
 
+<section class="ca-hairdresser-container my-5">
+    {% for hairdresser in hairdressers %}
+        <article>
+            <div class="ca-box-hairdresser">
+                <div class="box">
+                    <div class="box-inner">
+                        <div class="box-fron c-dflex-columns justify-content-between py-3">
+                            <a href="{{ path('book_show', {id:hairdresser.id}) }}"><img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="{{ hairdresser.user.fullName }}"></a>
+                        </div>
 
-    <h1></h1>
+                    </div>
+                </div>
+                <div class="c-dflex-columns justify-content-between py-3">
 
-    <ul>
-        {% for hairdresser in hairdressers %}
-        {{ hairdresser.user.fullName }}
-        {% endfor %}
-    </ul>
+                    <a href="{{ path('hairdresser_show', {id:hairdresser.id}) }}" class="pulse ca-btn h5 ca-ahref-hairdesser">{{ hairdresser.user.fullName }}</a>
+
+                </div>
+
+            </div>
+        </article>
+    {% endfor %}
+</section>
 
 {% endblock %}

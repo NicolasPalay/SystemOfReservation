@@ -1,0 +1,12 @@
+.ca-hairdresser-show ul{
+text-align: center;
+    padding: 40px;
+    background: var(--primary-color);
+    width: 100%;
+    color: var(--background);
+
+}
+.ca-hairdresser-show .ca-rotation{rotate: 0deg;
+}
+.ca-hairdresser-show ul li a {color: var(--background);}
+.ca-hairdresser-show ul li a:hover {color: var(--background);text-decoration: underline;}

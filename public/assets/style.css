@@ -6,6 +6,7 @@
 @import 'style/footer.css';
 @import 'style/admin.css';
 @import 'style/calendar.css';
+@import 'style/hairdresser.css';
 
 
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
@@ -34,7 +35,7 @@ ul{
     list-style: none;maring:0;padding:0;
 }
 a{cursor: pointer;text-decoration: none;color: var(--primary-color);font-family: var(--text-font);transition: var(--transition);}
-a.ca-link {border-bottom: 3px solid var(--light-color);
+a.ca-link {border-bottom: 3px solid rgba(250,224,223, 0);
     font-family: var( --text-font);transition: var(--transition);
     color: var(--primary-color);
 }

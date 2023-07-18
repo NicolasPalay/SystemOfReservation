@@ -32,7 +32,7 @@ class PicturesController extends AbstractController
             unlink($imagePathMini);
         }
 
-        return $this->redirectToRoute('book_edit', ['id' => $picture->getBook()->getId()
+        return $this->redirectToRoute('admin_book_new', ['id' => $picture->getBook()->getId()
 
         ]);
     }
