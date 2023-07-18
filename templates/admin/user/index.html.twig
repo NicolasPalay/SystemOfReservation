@@ -1,0 +1,26 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello Admin{% endblock %}
+{% block headerH1 %}<h1 class="h2 ca-h1 mx-auto text-center">
+    Tous les utilisateurs</h1>{% endblock %}
+{% block headerImg %}
+
+{% endblock %}
+{% block CssHeader %}{% endblock %}
+{% block headerPara %}
+
+   {% endblock %}
+{% block headerReservation %}{% endblock %}
+{% block body %}
+    <section class="ca-section">
+        {% for user in users %}<li>N° id : {{ user.id }} <a href="{{ path('user_delete', { id: user.id}) }}">supprimez cet utilisateur</a></li>
+            <ul class="ca-user-admin">
+
+                <li>Nom : {{ user.fullname }} </li>
+                <li>Email : <em>{{ user.email }}</em></li>
+                <li>Role : <em>{{ user.roles|join(', ') }}</em></li>
+            </ul>
+
+        {% endfor %}
+    </section>
+{% endblock %}
