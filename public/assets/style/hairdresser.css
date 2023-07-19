@@ -1,12 +1,54 @@
-.ca-hairdresser-show ul{
-text-align: center;
+.ca-hairdresser-show ul {
+    text-align: center;
     padding: 40px;
     background: var(--primary-color);
     width: 100%;
     color: var(--background);
 
 }
-.ca-hairdresser-show .ca-rotation{rotate: 0deg;
+
+.ca-hairdresser-show .ca-rotation {
+    rotate: 0deg;
 }
-.ca-hairdresser-show ul li a {color: var(--background);}
-.ca-hairdresser-show ul li a:hover {color: var(--background);text-decoration: underline;}
+
+.ca-hairdresser-show ul li a {
+    color: var(--background);
+}
+
+.ca-hairdresser-show ul li a:hover {
+    color: var(--background);
+    text-decoration: underline;
+}
+
+.ca-hairdresser-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ca-hairdresser-form div {
+    display: flex;
+    flex-direction: row;
+}
+
+.ca-hairdresser-form div label {
+    width: 93px;
+    padding: 6px 0;
+    font-size: small;
+}
+
+.ca-hairdresser-form div:first-child {
+    padding-bottom: 10px;
+}
+
+.ca-hairdresser-form div:first-child, .ca-hairdresser-form-picture div {
+    flex-direction: column;
+    width: 100%;
+    font-size: medium;
+}
+
+.ca-hairdresser-form-picture div label {
+    padding-top: 10px;
+    width: 100%;
+}

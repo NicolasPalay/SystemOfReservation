@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
-{%  block CssHeader %}ca-form-header{%  endblock %}
-{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form">Modifier cette spécialité</h1>{% endblock %}
+{% block title %}Edit speciality{% endblock %}
+{%  block CssHeader %}{{ parent() }} ca-form-header{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Modifier cette spécialité</h1>{% endblock %}
  {% block headerImg %}
      {%  if speciality.picture is not null %}
          <a href="{{path('pictures_delete_speciality', {id: speciality.picture.id})}}">

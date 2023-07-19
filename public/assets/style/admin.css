@@ -1,6 +1,6 @@
 #navbarNav{margin-left:20px}
 
-.ca-admin-navBar{margin:10px;padding:10px 15px; border-radius: 20px; border: 2px solid var(--primary-color);
+.ca-admin-navBar{position: absolute;margin:10px;padding:10px 15px; border-radius: 20px; border: 2px solid var(--primary-color);
 background: url('../uploads/pictures/nav.png') no-repeat center center;width:70px;height:65px;
 background-size:50px 45px;}
 .ca-admin-navBar:hover{border: 2px solid var(--background);
@@ -26,4 +26,14 @@ background: white}
     height: fit-content;}
 .ca-user-admin > div, .ca-user-admin.ca-form-header .ca-rotation{ background:white;}
 .ca-user-admin > div{width: 80%;background:white;}
-/*user admin*/
+.ca-admin-speciality{margin-bottom:20%}
+
+@media screen and  (max-width: 768px) {
+.ca-mini-picture{margin-top:-20px}
+    .ca-speciality-index{width: 100%}
+
+    .ca-user-admin{padding:0}
+    .ca-admin-speciality{margin-bottom:30%;    margin-top: 45%;}
+    .ca-admin-nav #calendar{width: 100%; margin-top: 0;
+        background: white}
+}

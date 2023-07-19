@@ -6,6 +6,7 @@ use App\Entity\Speciality;
 use App\Form\SpecialityType;
 use App\Repository\PicturesRepository;
 
+use App\Repository\SpecialityRepository;
 use App\Service\AddService;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,8 +42,10 @@ class SpecialityController extends AbstractController
     public function add(Request $request,
                         PictureService $pictureService,
                         EntityManagerInterface $entityManager,
+                        SpecialityRepository $specialityRepository,
                         AddService $addService): Response
     {
+        $specialities = $specialityRepository->findAll();
         $newSpeciality = new Speciality();
         $form = $this->createForm(SpecialityType::class, $newSpeciality);
         $form->handleRequest($request);
@@ -50,11 +53,12 @@ class SpecialityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $newSpeciality = $addService->processForm($form, $newSpeciality );
 
-            return $this->redirectToRoute('speciality_index');
+            return $this->redirectToRoute('admin_speciality_new');
         }
         return $this->render('admin/speciality/new.html.twig', [
             'form' => $form->createView(),
-            'speciality'=>$newSpeciality
+            'speciality'=>$newSpeciality,
+            'specialities'=>$specialities
 
         ]);
     }
