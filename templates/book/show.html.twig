@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{book.titleBook}}{% endblock %}
- {% block headerImg %}  <a href="{{asset('assets/uploads/pictures/' ~ book.pictures[0].name) }}" data-toggle="lightbox" data-gallery="gallery">
+ {% block headerImg %}  <a href="{{asset('assets/uploads/pictures/' ~ book.pictures[0].name) }}" >
      <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="{{book.titleBook}}">
  </a>
 
  {% endblock %}
-    {% block headerPara %}<h1 class="h2 ca-h1-script mx-auto text-center">{{book.titleBook}}</h1>{% endblock %}
+    {% block headerPara %}<h1 class="h2 ca-h1-script mx-auto text-center pt-3">{{book.titleBook}}</h1>{% endblock %}
 {%  block CssHeader %}mt-5{%  endblock %}
 {% block body %}
 

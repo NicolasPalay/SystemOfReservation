@@ -1,8 +1,8 @@
 {% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Hello BookController!{% endblock %}
-{%  block CssHeader %}ca-form-header{%  endblock %}
-{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form">Ajouter une coiffure</h1>{% endblock %}
+{%  block CssHeader %}{{ parent() }} ca-form-header{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Ajouter une coiffure</h1>{% endblock %}
  {% block headerImg %}<div id="image-container">
     <!-- L'emplacement pour les images prévisualisées -->
  </div>{% endblock %}

@@ -1,20 +1,25 @@
 {{ form_start(form) }}
+<div class="ca-hairdresser-form">
 
-         {{ form_row(form) }}
+    {{ form_row(form.user, {'label': 'Coiffeur', 'attr': {'class': 'special'}}) }}
 
+{% for special in form.specialities %}
 
- {% if hairdresser.id is empty %}
-     {# Champ obligatoire pour la création #}
-     {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}
- {% else %}
-     {# Champ facultatif pour l'édition #}
-     {{ form_row(form.picture) }}
- {% endif %}
+    {{ form_row(special, {'attr': {'class': 'special'}}) }}
 
-
-<div id="image-container">
+{% endfor %}
+    <div class="ca-hairdresser-form-picture">
+    {% if hairdresser.id is empty %}
+        {# Champ obligatoire pour la création #}
+        {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}
+    {% else %}
+        {# Champ facultatif pour l'édition #}
+        {{ form_row(form.picture) }}
+    {% endif %}
+</div>
+    <div id="image-container">
     <!-- L'emplacement pour les images prévisualisées -->
 </div>
-
-<button class="iv-btn">{{ button_label|default('Valider') }}</button>
+</div>
+<button class="btn pulse ca-btn">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}

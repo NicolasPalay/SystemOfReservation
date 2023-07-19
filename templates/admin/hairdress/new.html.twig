@@ -1,9 +1,32 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}New hairdresser{% endblock %}
+{%  block CssHeader %}{{ parent() }} ca-form-header ca-admin-speciality{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Ajouter un coiffeur</h1>{% endblock %}
+ {% block headerImg %}<div id="image-container">
+     <!-- L'emplacement pour les images prévisualisées -->
+ </div>{% endblock %}
+  {% block headerPara %}
+      {{ include('admin/hairdress/_form.html.twig', {'button_label': 'Valider'}) }}
 
+  {% endblock %}
 {% block body %}
-   <h1>Ajouter une coiffure</h1>
-    {{ include('admin/hairdress/_form.html.twig', {'button_label': 'Valider'}) }}
+    {% for hairdresser in hairdressers %}
+        <section class="ca-speciality-list d-flex flex-wrap">
 
+            <article class="ca-speciality-index">
+                <a href="{{ path('admin_hairdresser_edit', { id: hairdresser.id }) }}">{{ hairdresser.user.fullName }}</a>
+
+            </article>
+            <article class="ca-mini-picture">
+                {% if hairdresser.picture %}
+                    <a href="{{ path('admin_speciality_edit', { id:hairdresser.id }) }}">
+                        <img src="{{ asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="">
+                    </a>
+                {% endif %}
+
+
+            </article>
+        </section>
+    {% endfor %}
 {% endblock %}
