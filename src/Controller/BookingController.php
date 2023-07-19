@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/booking', name: 'app_booking_')]
 class BookingController extends AbstractController
@@ -25,6 +26,7 @@ class BookingController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, BookingRepository $bookingRepository, ReservationService $reservationService): Response
     {
         $userRdV = $bookingRepository->findOneBy(['client' => $this->getUser()], ['date' => 'DESC']);
