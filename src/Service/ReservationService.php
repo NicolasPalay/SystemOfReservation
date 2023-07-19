@@ -19,12 +19,15 @@ class ReservationService
             $hairdresser = $event->getHairdresser();
             $backgroundColor = '';
 
-            if ($hairdresser->getId() == 4) {
+            if ($hairdresser->getId() == $events[0]->getHairdresser()->getId()) {
                 $backgroundColor = 'orange';
-            } elseif ($hairdresser->getId() == 5) {
+                $titleName = $hairdresser->getUser()->getFullname();
+            } elseif ($hairdresser->getId() == $events[1]->getHairdresser()->getId()) {
                 $backgroundColor = 'blue';
-            } elseif ($hairdresser->getId() == 6) {
-                $backgroundColor = 'black';
+                $titleName = $hairdresser->getUser()->getFullname();
+            } elseif ($hairdresser->getId() == $events[2]->getHairdresser()->getId()) {
+                $backgroundColor = 'grey';
+                $titleName = $hairdresser->getUser()->getFullname();
             }
 
             $rdvs[] = [
@@ -33,6 +36,7 @@ class ReservationService
                 $end = $end->modify("+{$duration} minutes"),
                 'end' => $end->format('Y-m-d H:i:s'),
                 'backgroundColor' => $backgroundColor,
+                'title' => $titleName
             ];
         }
 
