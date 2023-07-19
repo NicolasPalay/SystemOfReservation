@@ -11,7 +11,6 @@
 - FullCalendar
 - Css
 
-
 ## Members :
 - Nicolas Palay
 - 06 60 61 40 75
