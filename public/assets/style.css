@@ -12,13 +12,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Preahvihear&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap');
 :root {
     --primary-color: #7A4A48;
     --secondary-color: #ffea98;
     --background: #FAE0DF;
     --dark-color: #303030;
     --light-color: #fff;
-    --text-font:  'Preahvihear', sans-serif;
+    --text-font:  'Lumanosimo', cursive;
     --script-font: 'Arizonia', cursive;
     --border-radius: 0.5rem;
     --transition: all 0.3s linear;
