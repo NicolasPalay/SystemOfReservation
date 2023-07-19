@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{book.titleBook}}{% endblock %}
- {% block headerImg %}  <a href="{{asset('assets/uploads/pictures/' ~ book.pictures[0].name) }}" >
+ {% block headerImg %}  <a class="ca-gallery" href="{{asset('assets/uploads/pictures/' ~ book.pictures[0].name) }}" >
      <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ book.pictures[0].name) }}" alt="{{book.titleBook}}">
  </a>
 
@@ -13,18 +13,24 @@
     <section class="ca-book-container ca-book-background">
         <div class="img-book">
         {% for image in book.pictures|slice(1) %}
-            <a href="{{asset('assets/uploads/pictures/' ~ image.name) }}" data-toggle="lightbox" data-gallery="gallery">
+            <a href="{{asset('assets/uploads/pictures/' ~ image.name) }}" class="ca-gallery">
                 <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
             </a>
         {% endfor %}
         </div>
         <p class="ca-book-content">{{book.content}}</p>
 
-
-
-
     </section>
+<div class="ca-modal-box">
+    <div class="ca-modal-content">
 
+        <span class="ca-close">&times;</span>
+        <div class="ca-modal-content">
+            <img src="" alt="">
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block javascript %}
+<script src="{{ asset('assets/lightbox.js') }}"></script>
 {% endblock %}

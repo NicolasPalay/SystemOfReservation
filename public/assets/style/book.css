@@ -24,3 +24,41 @@
     text-align: justify;
     margin:0;
 }
+
+/*modal*/
+.ca-modal-box{
+    z-index: 9999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: var(--dark-color);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.ca-modal-content{
+    width: 80%;
+
+    margin: auto;
+}
+.ca-show-modal{
+    display: flex;
+}
+
+.ca-modal-content img{
+    width: 100%;
+    height: auto;
+}
+.ca-close{
+    color: var(--dark-color);
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
