@@ -3,10 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\AdminRegisterType;
+use App\Form\BookType;
 use App\Repository\BookingRepository;
 use App\Repository\UserRepository;
 use App\Service\ReservationService;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -20,11 +25,11 @@ class AdminController extends AbstractController
 
         $data = $reservationService->reservation($bookingRepository);
         $admin = $this->getUser();
-       $users = $userRepository->findAll();
+
 
 
         return $this->render('admin/index.html.twig', [
-            'users' => $users,
+
             'admin' => $admin,
             'data' => $data->getContent(),
 
@@ -45,17 +50,43 @@ class AdminController extends AbstractController
 
         ]);
     }
-    #[Route('delete/{id}', name: 'user_delete', methods: ['POST', 'GET'])]
-    public function delete(User $user, UserRepository $userRepository): Response
 
+    #[Route('/admin/user/edit/{id}', name: 'admin_user_edit')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function update(User $user,Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = $userRepository->find(['id' => $user->getId()]);
+        $form = $this->createForm(AdminRegisterType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Utilisateur modifié');
+
+            return $this->redirectToRoute('app_admin_user');
+        }
+
+        return $this->render('admin/user/registerAdmin.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user,
+
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'user_delete', methods: ['POST', 'GET'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function delete(User $user, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($user->getId());
 
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur introuvable');
         }
 
-        $userRepository->remove($user, true);
+        $entityManager->remove($user);
+        $entityManager->flush();
+
         $this->addFlash('success', 'Utilisateur supprimé');
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }

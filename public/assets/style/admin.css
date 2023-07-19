@@ -27,7 +27,7 @@ background: white}
 .ca-user-admin > div, .ca-user-admin.ca-form-header .ca-rotation{ background:white;}
 .ca-user-admin > div{width: 80%;background:white;}
 .ca-admin-speciality{margin-bottom:20%}
-
+.ca-hairdresser-form.ca-admin-user> div> label{font-size: 1em}
 @media screen and  (max-width: 768px) {
 .ca-mini-picture{margin-top:-20px}
     .ca-speciality-index{width: 100%}
