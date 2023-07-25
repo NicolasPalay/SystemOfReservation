@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}{{ book.titleBook }}{% endblock %}
 {%  block CssHeader %}{{ parent() }} ca-form-header{%  endblock %}
 {% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Modifiez {{ book.titleBook }}</h1>{% endblock %}
  {% block headerImg %}<div id="image-container">
@@ -8,10 +8,12 @@
  </div>{% endblock %}
 {% block headerReservation %}{% endblock %}
   {% block headerPara %}
+      <div class="ca-retour"><a href="{{ path("admin_book_new") }}">Retour</a> </div>
       {{ include('admin/book/_form.html.twig', {'button_label': 'mettre à jour'}) }}
 
   {% endblock %}
 {% block body %}
+
     <div class="d-flex">
         {% for image in book.pictures %}
             <div class="ca-box-book">
