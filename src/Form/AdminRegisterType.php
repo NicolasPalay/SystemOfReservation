@@ -51,11 +51,7 @@ class AdminRegisterType extends AbstractType
                 ]),
             ],
         ])
-        ->add('valider', SubmitType::class, [
-            'attr' => [
-                'class' => 'btn btn-primary btn-block'
-            ]
-        ]);
+       ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
