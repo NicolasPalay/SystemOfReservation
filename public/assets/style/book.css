@@ -8,23 +8,28 @@
 }
 .ca-book-background{
     background-color: var(--background);
-    padding: 30px;
-    margin:0
+    padding: 60px 30px;
+    margin:30px 0
 }
 .img-book{
     width: 26%;
     display: flex;
+    box-shadow: 2px 2px 20px rgba(181, 134, 84, 1);
+
    }
 .img-book img{
     width: 100%;
     height: auto;
 }
+.img-book img:hover{box-shadow: 2px 2px 20px rgba(181, 134, 84, 1); transform: scale(1.1);}
 .ca-book-content{
     width:60%;
     text-align: justify;
     margin:0;
 }
 
+.ca-book-background{transform: skewY(3deg);}
+.ca-book-content, .img-book{transform: skewY(-3deg);}
 /*modal*/
 .ca-modal-box{
     z-index: 9999999;
@@ -43,7 +48,6 @@
 }
 .ca-modal-content{
     width: 80%;
-
     margin: auto;
 }
 .ca-show-modal{
