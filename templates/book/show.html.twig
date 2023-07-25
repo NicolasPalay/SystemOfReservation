@@ -6,8 +6,8 @@
  </a>
 
  {% endblock %}
-    {% block headerPara %}<h1 class="h2 ca-h1-script mx-auto text-center pt-3">{{book.titleBook}}</h1>{% endblock %}
-{%  block CssHeader %}mt-5{%  endblock %}
+    {% block headerH1 %}<h1 class="h2 ca-h1-form mx-auto text-center pt-3">{{book.titleBook}}</h1>{% endblock %}
+{%  block CssHeader %}ca-header-pad13{%  endblock %}
 {% block body %}
 
     <section class="ca-book-container ca-book-background">
@@ -18,7 +18,7 @@
             </a>
         {% endfor %}
         </div>
-        <p class="ca-book-content">{{book.content}}</p>
+        <p class="ca-book-content">{{book.content | nl2br}}</p>
 
     </section>
 <div class="ca-modal-box">
