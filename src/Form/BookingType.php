@@ -26,8 +26,12 @@ class BookingType extends AbstractType
             ])
             ->add('hairdresser', EntityType::class, [
                 'class' => Hairdresser::class,
-                'choice_label' => 'user.fullName',])
-        ->add('speciality',null,['choice_label' => 'nameSpeciality'])
+                'choice_label' => 'user.fullName',
+                'placeholder' => 'Choissez votre coiffeur',
+                'label' => 'Coiffeurs(ses)',])
+        ->add('speciality',null,['choice_label' => 'nameSpeciality',
+            'label' => 'Spécialités',
+            'placeholder' => 'Choissez votre coiffure',])
         ;
     }
 

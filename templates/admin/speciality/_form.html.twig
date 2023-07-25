@@ -2,13 +2,14 @@
          {{ form_row(form.nameSpeciality) }}
             {{ form_row(form.content) }}
             {{ form_row(form.duration) }}
- {% if speciality.id is empty %}
-     {# Champ obligatoire pour la création #}
-     {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}
- {% else %}
-     {# Champ facultatif pour l'édition #}
-     {{ form_row(form.picture) }}
- {% endif %}
+            {{ form_row(form.rate) }}
+         {% if speciality.id is empty %}
+             {# Champ obligatoire pour la création #}
+             {{ form_row(form.picture, { 'attr': {'required': 'required'} }) }}
+         {% else %}
+             {# Champ facultatif pour l'édition #}
+             {{ form_row(form.picture) }}
+         {% endif %}
 
 <div id="image-container">
     <!-- L'emplacement pour les images prévisualisées -->
