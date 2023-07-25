@@ -1,8 +1,8 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}Admin Book{% endblock %}
 {%  block CssHeader %}{{ parent() }} ca-form-header{%  endblock %}
-{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Ajouter une coiffure</h1>{% endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Ajouter un article</h1>{% endblock %}
  {% block headerImg %}<div id="image-container">
     <!-- L'emplacement pour les images prévisualisées -->
  </div>{% endblock %}
@@ -12,28 +12,36 @@
 {% endblock %}
 {% block body %}
     <section class="d-flex flex-column py-3 w-75 flex-start mx-auto">
-    {% for book in books %}
-        <article>
-            <div class="ca-box-book">
-                <div class="d-flex justify-content-between py-3 w-75 flex-start mx-auto">
-                    <a href="{{ path('admin_book_edit', {id: book.id}) }}" class="h4">{{ book.titleBook }}</a>
-                </div>
-                <div class="d-flex">
-                    {% for image in book.pictures %}
-                        <div class="ca-box-book">
-                            <div class="c-dflex-columns ">
+        {% for book in books %}
+            <article>
 
-                                <img class="ca-mini-img-admin" src="{{ asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
-                                <a href="{{ path('pictures_delete', {id: image.id}) }}" class="btn btn-danger">Supprimer</a>
-                            </div>
+                <div class="ca-box-book">
+                    <div class="d-flex justify-content-between py-3 w-75 flex-start mx-auto">
+                        <a href="{{ path('admin_book_edit', {id: book.id}) }}" class="h4">{{ book.titleBook }}</a>
+                        <a href="" class="ca-href-delete">delete</a>
+                        <div class="modaleDelete" data-book-id="{{ book.id }}">
+
+                                <span class="ca-close">Fermer</span>
+                                <a href="#" class="delete-book-link">supprimer</a>
+
+                            <a href="{{ path('admin_book_delete',{ id: book.id }) }}">delete</a>
                         </div>
-               {% endfor %}
-                </div>
+                    </div>
 
-            </div>
-        </article>
-    {% endfor %}
+                    <div class="d-flex">
+                        {% for image in book.pictures %}
+                            <div class="ca-box-book">
+                                <div class="c-dflex-columns mb-4">
+                                    <img class="ca-mini-img-admin" src="{{ asset('assets/uploads/pictures/mini/300x300-' ~ image.name) }}" alt="">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
     </section>
+
 {% endblock %}
 {% block javascripts %}
     <script>

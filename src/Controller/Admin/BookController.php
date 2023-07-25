@@ -19,42 +19,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class BookController extends AbstractController
 {
-     #[Route('/edit/{id}', name: 'edit')]
-    public function update(Request $request,
-                           PictureService $pictureService,
-                           EntityManagerInterface $entityManager,
-                           Book $book): Response
-    {
-
-        $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->has('pictures')) {
-                $pictures = $form->get('pictures')->getData();
-
-                foreach ($pictures as $picture) {
-                    $folder = 'pictures';
-                    $pictureName = $pictureService->add($picture, $folder, 300, 300);
-                    $newPicture = new Pictures();
-                    $newPicture->setName($pictureName);
-                    $book->addPicture($newPicture);
-                }
-            }
-
-            $newBook = $form->getData();
-            $entityManager->persist($newBook);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('book_index');
-        }
-
-        return $this->render('admin/book/edit.html.twig', [
-            'form' => $form->createView(),
-            'book' => $book
-        ]);
-    }
-
     /**
      *
      * @aad Book new()
@@ -66,9 +30,9 @@ class BookController extends AbstractController
      */
     #[Route('/new', name: 'new')]
     public function add(Request $request, PictureService $pictureService, EntityManagerInterface
-    $entityManager,BookRepository $bookRepository): Response
+                                $entityManager,BookRepository $bookRepository): Response
     {
-        $books = $bookRepository->findAll();
+        $books = $bookRepository->findBy([], ['id' => 'ASC']);
         $newBook = new Book();
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
@@ -102,12 +66,50 @@ class BookController extends AbstractController
         ]);
     }
 
+    #[Route('/edit/{id}', name: 'edit')]
+    public function update(Request $request,
+                           PictureService $pictureService,
+                           EntityManagerInterface $entityManager,
+                           Book $book): Response
+    {
+
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->has('pictures')) {
+                $pictures = $form->get('pictures')->getData();
+
+                foreach ($pictures as $picture) {
+                    $folder = 'pictures';
+                    $pictureName = $pictureService->add($picture, $folder, 300, 300);
+                    $newPicture = new Pictures();
+                    $newPicture->setName($pictureName);
+                    $book->addPicture($newPicture);
+                }
+            }
+
+            $newBook = $form->getData();
+            $entityManager->persist($newBook);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_book_edit', ['id' => $book->getId()]);
+        }
+
+        return $this->render('admin/book/edit.html.twig', [
+            'form' => $form->createView(),
+            'book' => $book
+        ]);
+    }
+
+
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Book $book, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($book);
+
         $entityManager->flush();
-        return $this->redirectToRoute('book_index');
+        return $this->redirectToRoute('admin_book_new');
     }
 
 
