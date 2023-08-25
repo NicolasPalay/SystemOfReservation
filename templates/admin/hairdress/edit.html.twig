@@ -1,15 +1,32 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}Mise à jour d'un coiffeur{% endblock %}
+{%  block CssHeader %}{{ parent() }} ca-form-header{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Mise à jour de la fiche de {{ hairdresser.user.fullName }}</h1>{% endblock %}
+ {% block headerImg %}
+     <article class="d-flex flex-column justify-content-center w-100">
+         {% if hairdresser.picture %}
 
+             <img src="{{ asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="">
+           <div class="c-dflex-columns">
+             <a class="d-flex flex-column items-center" href="{{ path('pictures_delete_hairdresser', {id: hairdresser.picture.id}) }}">
+                 <button class="btn btn-danger">supprimer</button>
+             </a>
+           </div>
+         {% endif %}
+
+
+     </article>
+     <div id="image-container">
+     <!-- L'emplacement pour les images prévisualisées -->
+ </div>{% endblock %}
+  {% block headerPara %}
+      {{ include('admin/hairdress/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+  {% endblock %}
 {% block body %}
-   <h1>modifier cette spécialité</h1>
-    {{ include('admin/hairdress/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-   {%  if hairdresser.picture is not null %}
-        <a href="{{path('pictures_delete_speciality', {id: speciality.picture.id})}}">
-            <img src="{{asset('assets/uploads/pictures/mini/300x300-' ~ hairdresser.picture.name) }}" alt="">
-        </a>
 
-{% endif %}
+
+
 {% endblock %}

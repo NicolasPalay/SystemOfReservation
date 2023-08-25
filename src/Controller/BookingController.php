@@ -19,13 +19,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_USER')]
 class BookingController extends AbstractController
 {
-  
+
     #[Route('/new', name: 'new')]
-    public function new(Request $request,
-                        EntityManagerInterface $entityManager,
-                        UserRepository $userRepository,
-                        BookingRepository $bookingRepository,
+    #[IsGranted('ROLE_USER')]
+    public function new(Request $request, 
+                        EntityManagerInterface $entityManager, 
+                        UserRepository $userRepository, 
+                        BookingRepository $bookingRepository, 
                         ReservationService $reservationService): Response
+
     {
         $userRdV = $bookingRepository->findOneBy(['client' => $this->getUser()], ['date' => 'DESC']);
 

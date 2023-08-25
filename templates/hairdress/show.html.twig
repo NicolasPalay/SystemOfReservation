@@ -2,8 +2,8 @@
 
 {% block title %}{{hairdresser.user.fullName}}{% endblock %}
 {% block headerImg %}<img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="{{ hairdresser.user.fullName }}">{% endblock %}
-{%  block CssHeader %}ca-hairdresser-show{%  endblock%}
-{% block headerH1 %} <h1 class="h2 ca-h1 mx-auto text-center">{{hairdresser.user.fullName}}</h1>{% endblock %}
+{%  block CssHeader %}ca-hairdresser-show ca-header-pad13{%  endblock%}
+{% block headerH1 %} <h1 class="h2 ca-h1-form mx-auto text-center">{{hairdresser.user.fullName}}</h1>{% endblock %}
  {% block headerPara %}
      <ul>
          {% for hairspeciality in hairdresser.specialities %}

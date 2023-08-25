@@ -35,6 +35,7 @@ class ReservationService
                 $end = $end->modify("+{$duration} minutes"),
                 'end' => $end->format('Y-m-d H:i:s'),
                 'backgroundColor' => $backgroundColor,
+                'title' => $titleName
             ];
         }
 

@@ -1,6 +1,6 @@
 hr{width: 100%; height:10px;background: var(--primary-color);border: none;opacity: 1}
 footer {margin:30px}
-.ca-section-footer{justify-content: space-between; flex-wrap: wrap}
+.ca-section-footer{justify-content: space-around; flex-wrap: wrap}
 .ca-columns-footer{width:250px}
 .map-footer{position: relative}
 .ca-adress{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;color:var(--background)

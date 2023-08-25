@@ -1,6 +1,6 @@
 #navbarNav{margin-left:20px}
-
-.ca-admin-navBar{margin:10px;padding:10px 15px; border-radius: 20px; border: 2px solid var(--primary-color);
+select::placeholder{color:red}
+.ca-admin-navBar{position: absolute;margin:10px;padding:10px 15px; border-radius: 20px; border: 2px solid var(--primary-color);
 background: url('../uploads/pictures/nav.png') no-repeat center center;width:70px;height:65px;
 background-size:50px 45px;}
 .ca-admin-navBar:hover{border: 2px solid var(--background);
@@ -17,7 +17,7 @@ background: white}
 .ca-mini-img-admin{max-width: 100px;height: 100px;
 }
 .ca-section{width: 80%; margin: 0}
-
+.ca-retour a{color: var(--background);font-size: 1em;}
 .ca-admin-nav .ca-rotation{display: none;}
 .ca-admin-nav .fc-col-header{max-width: 100%;}
 .ca-admin-nav >div{width: 80%;margin: 0 auto;}
@@ -26,4 +26,35 @@ background: white}
     height: fit-content;}
 .ca-user-admin > div, .ca-user-admin.ca-form-header .ca-rotation{ background:white;}
 .ca-user-admin > div{width: 80%;background:white;}
-/*user admin*/
+.ca-admin-speciality{margin-bottom:20%}
+.ca-hairdresser-form.ca-admin-user> div> label{font-size: 1em}
+.ca-user-display{display:none ; }
+.ca-user-display .ca-h1 {margin-bottom: 20px}
+.modaleDelete{z-index: 9999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(255,255,255,0.5);
+    color: var(--dark-color);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;}
+.ca-delete-display-modal{ width: 80%;
+display: block;
+    margin: auto;
+}
+/* margin-bottom: -50px;display: block}
+
+@media screen and  (max-width: 768px) {
+.ca-mini-picture{margin-top:-20px}
+.ca-speciality-index{width: 100%}
+
+.ca-user-admin{padding:0}
+.ca-admin-speciality{margin-bottom:30%;    margin-top: 45%;}
+.ca-admin-nav #calendar{width: 100%; margin-top: 0;
+    background: white}
+}

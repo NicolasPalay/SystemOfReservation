@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Pictures;
+use App\Repository\HairdresserRepository;
 use App\Repository\SpecialityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 #[Route('/pictures', name: 'pictures_')]
+#[IsGranted('ROLE_ADMIN')]
 class PicturesController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -32,7 +36,7 @@ class PicturesController extends AbstractController
             unlink($imagePathMini);
         }
 
-        return $this->redirectToRoute('admin_book_new', ['id' => $picture->getBook()->getId()
+        return $this->redirectToRoute('admin_book_edit', ['id' => $picture->getBook()->getId()
 
         ]);
     }
@@ -51,9 +55,30 @@ class PicturesController extends AbstractController
             unlink($imagePathMini);
         }
 
-        return $this->redirectToRoute('speciality_edit',
+        return $this->redirectToRoute('admin_speciality_edit',
             ['id' => $speciality->getId()
 
         ]);
     }
+    #[Route('/deleteHairdresser/{id}', name: 'delete_hairdresser')]
+    public function deleteHairdresser(Request $request, HairdresserRepository $hairdresserRepository, EntityManagerInterface $entityManager, Pictures $picture): Response
+    {
+        $hairdresser = $hairdresserRepository->findOneBy(['picture' => $picture]);
+        $hairdresser->setPicture(null);
+        $entityManager->remove($picture);
+        $entityManager->flush();
+
+        $imagePath = 'assets/uploads/pictures/' . $picture->getName();
+        $imagePathMini = 'assets/uploads/pictures/mini/300x300-' . $picture->getName();
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+            unlink($imagePathMini);
+        }
+
+        return $this->redirectToRoute('admin_hairdresser_edit',
+            ['id' => $hairdresser->getId()
+
+            ]);
+    }
+
 }

@@ -33,8 +33,9 @@ class BookController extends AbstractController
                         PictureService $pictureService,
                         EntityManagerInterface
                         $entityManager,BookRepository $bookRepository): Response
+
     {
-        $books = $bookRepository->findAll();
+        $books = $bookRepository->findBy([], ['id' => 'ASC']);
         $newBook = new Book();
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
@@ -105,8 +106,9 @@ class BookController extends AbstractController
     public function delete(Book $book, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($book);
+
         $entityManager->flush();
-        return $this->redirectToRoute('book_index');
+        return $this->redirectToRoute('admin_book_new');
     }
 
 

@@ -21,7 +21,7 @@ class HairdressController extends AbstractController
     public function index(HairdresserRepository $hairdresserRepository): Response
     {
         return $this->render('hairdress/index.html.twig', [
-            'hairdressers' => $hairdresserRepository->findAll(),
+            'hairdressers' => $hairdresserRepository->findBy([],['id'=>'DESC']),
         ]);
     }
 
