@@ -37,8 +37,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-        #  - { path : ^\hairdresser, roles: ROLE_HAIRDRESSER}
          - { path: ^/compte, roles: ROLE_USER }
+         - { path: ^/booking, roles: ROLE_USER }
 
 when@test:
     security:
@@ -52,3 +52,4 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+#  - { path : ^\hairdresser, roles: ROLE_HAIRDRESSER}

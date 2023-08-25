@@ -19,13 +19,57 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class BookController extends AbstractController
 {
+    /**
+     *
+     * @aad Book new()
+     * @param Request $request
+     * @param PictureService $pictureService
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     *
+     */
+    #[Route('/new', name: 'new')]
+    public function add(Request $request,
+                        PictureService $pictureService,
+                        EntityManagerInterface
+                        $entityManager,BookRepository $bookRepository): Response
+    {
+        $books = $bookRepository->findAll();
+        $newBook = new Book();
+        $form = $this->createForm(BookType::class, $newBook);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pictures = $form->get('pictures')->getData();
+            $newBook = $form->getData();
+            $folder = 'pictures';
+            array_map(function ($picture) use ($folder, $pictureService, $newBook) {
+                $pictureName = $pictureService->add($picture, $folder, 300, 300);
+
+                $newPicture = new Pictures();
+                $newPicture->setName($pictureName);
+                $newBook->addPicture($newPicture);
+
+                return $newPicture;
+            }, $pictures);
+
+            $entityManager->persist($newBook);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_book_new');
+        }
+        return $this->render('admin/book/new.html.twig', [
+            'form' => $form->createView(),
+            'book'=>$newBook,
+            'books' => $books
+        ]);
+    }
+
      #[Route('/edit/{id}', name: 'edit')]
     public function update(Request $request,
                            PictureService $pictureService,
                            EntityManagerInterface $entityManager,
                            Book $book): Response
     {
-
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -55,52 +99,7 @@ class BookController extends AbstractController
         ]);
     }
 
-    /**
-     *
-     * @aad Book new()
-     * @param Request $request
-     * @param PictureService $pictureService
-     * @param EntityManagerInterface $entityManager
-     * @return Response
-     * @throws \Exception
-     */
-    #[Route('/new', name: 'new')]
-    public function add(Request $request, PictureService $pictureService, EntityManagerInterface
-    $entityManager,BookRepository $bookRepository): Response
-    {
-        $books = $bookRepository->findAll();
-        $newBook = new Book();
-        $form = $this->createForm(BookType::class, $newBook);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $pictures = $form->get('pictures')->getData();
 
-            $folder = 'pictures';
-
-            $newPictures = array_map(function ($picture) use ($folder, $pictureService, $newBook) {
-                $pictureName = $pictureService->add($picture, $folder, 300, 300);
-
-                $newPicture = new Pictures();
-                $newPicture->setName($pictureName);
-                $newBook->addPicture($newPicture);
-
-                return $newPicture;
-            }, $pictures);
-            $newBook = $form->getData();
-            $entityManager->persist($newBook);
-            $entityManager->flush();
-
-
-            return $this->redirectToRoute('admin_book_new');
-        }
-        return $this->render('admin/book/new.html.twig', [
-
-            'form' => $form->createView(),
-            'book'=>$newBook,
-            'books' => $books
-
-        ]);
-    }
 
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Book $book, EntityManagerInterface $entityManager): Response

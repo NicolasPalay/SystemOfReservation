@@ -36,7 +36,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     #[Assert\Length(min: 6, max: 50)]
     private ?string $password = null;
+
     private ?string $plainPassword = null;
+
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createAt = null;
