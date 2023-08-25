@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SpecialityRepository::class)]
 class Speciality
@@ -17,9 +18,15 @@ class Speciality
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message : 'Le nom de la spécialité ne peut pas être vide')]
+    #[Assert\Length(min: 6, max: 100,
+        minMessage: 'Le nom de la spécialité doit contenir au moins 6 caractères',
+        maxMessage: 'Le nom de la spécialité doit contenir au plus 100 caractères')]
     private ?string $nameSpeciality = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message : 'La durée ne peut pas être vide')]
+    #[Assert\PositiveOrZero(message: 'La durée doit être positive en minutes')]
     private ?int $duration = null;
 
     #[ORM\ManyToMany(targetEntity: Hairdresser::class, inversedBy: 'specialities')]

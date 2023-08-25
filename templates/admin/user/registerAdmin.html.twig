@@ -1,0 +1,25 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Mise à jour de la fiche
+    de {{ user.fullName }}</h1>{% endblock %}
+{% block CssHeader %}{{ parent() }} ca-form-header{% endblock %}
+ {% block headerPara %}
+     {{ form_start(form) }}
+     {{ form_errors(form) }}
+     {{ form_row(form.email) }}
+     {{ form_row(form.fullName) }}
+     <div class="ca-hairdresser-form ca-admin-user">
+         {{ form_row(form.roles) }}
+
+     </div>
+     <div class="ca-hairdresser-form ca-admin-user">
+         {{ form_row(form.agreeTerms) }}
+     </div>
+     <div class="ca-form-btn">
+         <button class="btn pulse ca-btn">{{ button_label|default('Mettre à jour') }}</button>
+     </div>
+     {{ form_end(form) }}
+
+ {% endblock %}
+{% block body %}
+
+{% endblock %}

@@ -1,8 +1,8 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
-{%  block CssHeader %}ca-form-header{%  endblock %}
-{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form">Ajouter une coiffure</h1>{% endblock %}
+{% block title %}New Speciality{% endblock %}
+{%  block CssHeader %}{{ parent() }} ca-form-header ca-admin-speciality{%  endblock %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Ajouter une coiffure</h1>{% endblock %}
  {% block headerImg %}<div id="image-container">
      <!-- L'emplacement pour les images prévisualisées -->
  </div>{% endblock %}
@@ -11,6 +11,24 @@
   {% endblock %}
 {% block headerReservation %}{% endblock %}
 {% block body %}
+    {% for special in specialities %}
+        <section class="ca-speciality-list d-flex flex-wrap">
 
+            <article class="ca-speciality-index">
+                <a href="{{ path('admin_speciality_edit', { id: special.id }) }}">{{ special.nameSpeciality }}</a>
+                <p><em>Durée : {{ special.duration }} min</em> | <em>Tarif : {{ special.rate }} €</em></p>
+                <p></p>
+            </article>
+            <article class="ca-mini-picture">
+                {% if special.picture %}
+                    <a href="{{ path('admin_speciality_edit', { id: special.id }) }}">
+                        <img src="{{ asset('assets/uploads/pictures/mini/300x300-' ~ special.picture.name) }}" alt="">
+                    </a>
+                {% endif %}
+
+
+            </article>
+        </section>
+    {% endfor %}
 
 {% endblock %}
