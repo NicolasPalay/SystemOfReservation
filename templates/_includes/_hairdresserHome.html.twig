@@ -7,15 +7,11 @@
                         <div class="box-fron c-dflex-columns justify-content-between py-3">
                             <a href="{{ path('hairdresser_show', {id:hairdresser.id}) }}"><img src="{{asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="{{ hairdresser.user.fullName }}"></a>
                         </div>
-
                     </div>
                 </div>
                 <div class="c-dflex-columns justify-content-between py-3">
-
                     <a href="{{ path('hairdresser_show', {id:hairdresser.id}) }}" class="pulse ca-btn h5 ca-ahref-hairdesser">{{ hairdresser.user.fullName }}</a>
-
                 </div>
-
             </div>
         </article>
     {% endfor %}

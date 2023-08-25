@@ -26,11 +26,14 @@ class BookController extends AbstractController
      * @param PictureService $pictureService
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @throws \Exception
+     *
      */
     #[Route('/new', name: 'new')]
-    public function add(Request $request, PictureService $pictureService, EntityManagerInterface
-                                $entityManager,BookRepository $bookRepository): Response
+    public function add(Request $request,
+                        PictureService $pictureService,
+                        EntityManagerInterface
+                        $entityManager,BookRepository $bookRepository): Response
+
     {
         $books = $bookRepository->findBy([], ['id' => 'ASC']);
         $newBook = new Book();
@@ -38,10 +41,9 @@ class BookController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $pictures = $form->get('pictures')->getData();
-
+            $newBook = $form->getData();
             $folder = 'pictures';
-
-            $newPictures = array_map(function ($picture) use ($folder, $pictureService, $newBook) {
+            array_map(function ($picture) use ($folder, $pictureService, $newBook) {
                 $pictureName = $pictureService->add($picture, $folder, 300, 300);
 
                 $newPicture = new Pictures();
@@ -50,29 +52,25 @@ class BookController extends AbstractController
 
                 return $newPicture;
             }, $pictures);
-            $newBook = $form->getData();
+
             $entityManager->persist($newBook);
             $entityManager->flush();
-
 
             return $this->redirectToRoute('admin_book_new');
         }
         return $this->render('admin/book/new.html.twig', [
-
             'form' => $form->createView(),
             'book'=>$newBook,
             'books' => $books
-
         ]);
     }
 
-    #[Route('/edit/{id}', name: 'edit')]
+     #[Route('/edit/{id}', name: 'edit')]
     public function update(Request $request,
                            PictureService $pictureService,
                            EntityManagerInterface $entityManager,
                            Book $book): Response
     {
-
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -93,7 +91,7 @@ class BookController extends AbstractController
             $entityManager->persist($newBook);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_book_edit', ['id' => $book->getId()]);
+            return $this->redirectToRoute('book_index');
         }
 
         return $this->render('admin/book/edit.html.twig', [
@@ -101,6 +99,7 @@ class BookController extends AbstractController
             'book' => $book
         ]);
     }
+
 
 
     #[Route('/delete/{id}', name: 'delete')]

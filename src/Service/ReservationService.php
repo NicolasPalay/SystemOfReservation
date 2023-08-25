@@ -17,7 +17,6 @@ class ReservationService
             $end = clone $start;
             $duration = $event->getSpeciality()->getDuration();
             $hairdresser = $event->getHairdresser();
-            $backgroundColor = '';
 
             if ($hairdresser->getId() == $events[0]->getHairdresser()->getId()) {
                 $backgroundColor = 'orange';
