@@ -20,7 +20,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class BookingController extends AbstractController
 {
   
-
     #[Route('/new', name: 'new')]
     public function new(Request $request,
                         EntityManagerInterface $entityManager,
