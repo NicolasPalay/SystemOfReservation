@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block headerH1 %}<h1 class="h3 mb-3 ca-h1-form pt-3">Bienvenue {{ user.fullName }}</h1>{% endblock %}
+{%  block CssHeader %}ca-form-header ca-margin-top{%  endblock %}
+{% block headerImg %}<img src="{{ asset('assets/uploads/pictures/icon-inscription.png')}}" alt="">{% endblock %}
+{% block headerPara %}<p>
+    <h4 class="mb-3 ca-h1-form">Modifier votre compte</h4>
+    {{ form_errors(form) }}
+
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.fullName) }}
+
+    <div class="ca-form-btn">
+        <button type="submit" class="btn pulse ca-btn">Register</button>
+        {{ form_end(form) }}
+    </div>
+    </p>{% endblock %}
+{% block headerReservation %}{% endblock %}
+
+{% block body %}
+
+<p class="h5 my-3">    Voici vos rendez-vous :</p>
+
+   <div class="d-flex justify-content-around flex-wrap ">
+        {% for booking in bookings %}
+            <ul class="ca-booking-user w-25">
+                <li>vous avez pris rendez-vous avec <br><strong>{{ booking.hairdresser.user.fullName }}</strong></li>
+                <li>pour une scéance de <strong>{{ booking.speciality.nameSpeciality }}</strong></li>
+                <li>le <strong>{{ booking.date|date('d/m/Y') }} à {{ booking.date|date('H:i') }}</strong></li>
+                <li>pour un montant de <strong>{{ booking.speciality.rate }} €</strong></li>
+                <li>et une durée de <strong>{{ booking.speciality.duration }} min</strong></li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}

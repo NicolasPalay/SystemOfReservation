@@ -3,12 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Entity\Pictures;
 use App\Form\BookType;
 use App\Repository\BookRepository;
-use App\Repository\PicturesRepository;
-use App\Service\PictureService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

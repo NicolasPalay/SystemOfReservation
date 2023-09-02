@@ -10,7 +10,7 @@ window.onload = () => {
             center: 'title',
             right: 'dayGridMonth,timeGridWeek'
         },
-        slotMinTime: '09:00',
+        /*slotMinTime: '09:00',
         slotMaxTime: '19:00',
         dayHeaders: true,
         views: {
@@ -26,9 +26,19 @@ window.onload = () => {
             daysOfWeek: [2, 3, 4, 5, 6], // Mardi à Samedi
             startTime: '09:00', // Heure de début
             endTime: '19:00' // Heure de fin
-        },
-        events: JSON.parse('{{ data|raw }}')
+        },*/
+        events: JSON('{{ data|raw }}'),
+        editable: true,
+        selectable: true,
+        eventResizableFromStart: true,
+        eventStartEditable: true,
+        eventDurationEditable: true,
+
     });
+    calendar.on('eventChange', (e) => {
+
+    });
+
 
     calendar.render();
 };

@@ -33,11 +33,11 @@ security:
     role_hierarchy:
         ROLE_USER: ROLE_USER
         ROLE_HAIRDRESSER: [ ROLE_USER, ROLE_HAIRDRESSER ]
-        ROLE_ADMIN: [ ROLE_USER, ROLE_TECH, ROLE_USER ]
+        ROLE_ADMIN: [ ROLE_USER, ROLE_HAIRDRESSER, ROLE_USER ]
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/compte, roles: ROLE_USER }
+         - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/booking, roles: ROLE_USER }
 
 when@test:
