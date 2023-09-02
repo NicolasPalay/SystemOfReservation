@@ -7,9 +7,10 @@
 @import 'style/admin.css';
 @import 'style/calendar.css';
 @import 'style/hairdresser.css';
-@import 'style/user.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=BenchNine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Preahvihear&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap');
 
 :root {

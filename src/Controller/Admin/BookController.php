@@ -102,7 +102,7 @@ class BookController extends AbstractController
 
 
 
-    #[Route('/delete/{id}', name: 'delete',methods: ['GET'])]
+    #[Route('/delete/{id}', name: 'delete')]
     public function delete(Book $book, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($book);

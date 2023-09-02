@@ -39,7 +39,7 @@ class SpecialityType extends AbstractType
                 ]
     ])
             ->add('picture', FileType::class, [
-
+                'multiple' => false,
                 'label' => 'Ajouter une photo',
                 'mapped' => false,
                 'required' => false,
