@@ -21,9 +21,9 @@ class Pictures
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     private ?Book $book = null;
 
-    #[ORM\OneToOne(mappedBy: 'picture', cascade: ['persist', 'remove'])]
-    private ?Hairdresser $hairdresser = null;
 
+    #[ORM\OneToOne(mappedBy: "picture")]
+    private ?Speciality $speciality = null;
 
     public function getId(): ?int
     {

@@ -91,6 +91,7 @@ class Speciality
     {
         if (!$this->hairdresser->contains($hairdresser)) {
             $this->hairdresser->add($hairdresser);
+            $hairdresser->addSpeciality($this);
         }
 
         return $this;

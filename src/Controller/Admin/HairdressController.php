@@ -44,22 +44,27 @@ class HairdressController extends AbstractController
         $form = $this->createForm(HairdresserType::class, $hairdresser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             // Process the hairdresser form
             $hairdresser = $addService->processForm($form, $hairdresser);
 
             // Get the selected specialities from the form
             $hairdressSpecials = $form->get('specialities')->getData();
 
-            // Clear the existing specialities (optional if it's a many-to-many relationship)
-            $hairdresser->getSpecialities()->clear();
-
-            // Add the selected specialities to the hairdresser
             foreach ($hairdressSpecials as $hairdressSpecial) {
-                $hairdresser->addSpeciality($hairdressSpecial);
+                if (!$hairdressSpecial){
+                    $hairdressSpecial->removeHairdresser($hairdresser);
+                } else {
+                    $hairdressSpecial->addHairdresser($hairdresser);
+
+                }
+
             }
 
-            // Save the hairdresser
-            $hairdresserRepository->save($hairdresser, true);
+
+            $entityManager->persist($hairdresser);
+            $entityManager->flush();
+
 
             // Redirect to a new route (you might want to change this)
             return $this->redirectToRoute('admin_hairdresser_new');

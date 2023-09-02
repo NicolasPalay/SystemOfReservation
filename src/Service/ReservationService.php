@@ -2,11 +2,32 @@
 
 namespace App\Service;
 
+use App\Entity\Hairdresser;
+use App\Entity\Speciality;
 use App\Repository\BookingRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 class ReservationService
 {
+    private BookingRepository $bookingRepository;
+
+    public function __construct(BookingRepository $bookingRepository)
+    {
+        $this->bookingRepository = $bookingRepository;
+    }
+
+    public function isSlotAvailable(\DateTimeInterface $dateTime, Hairdresser $hairdresser, Speciality $speciality): bool
+    {
+        $existingBooking = $this->bookingRepository->findOneBy([
+            'date' => $dateTime,
+            'hairdresser' => $hairdresser,
+            'speciality' => $speciality,
+        ]);
+
+        return !$existingBooking; // Si $existingBooking est null, alors le créneau est disponible.
+    }
+
+
     public function reservation(BookingRepository $bookingRepository): Response {
 
         $events = $bookingRepository->findAll();
