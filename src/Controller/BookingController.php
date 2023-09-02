@@ -39,23 +39,20 @@ class BookingController extends AbstractController
         $calendar = $reservationService->reservation($bookingRepository);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-                $newBooking = $form->getData();
-                $newBooking->setHairdresser($form->get('hairdresser')->getData());
-                $newBooking->setClient($this->getUser());
-                $bookingRepository->save($newBooking, true);
-                $this->addFlash('success', 'Votre réservation a bien été enregistrée');
-                $this->addFlash('success', 'Un email vous a été envoyé pour confirmer votre réservation');
-
-                $mail = new Mail();
-                $content = "bonjour " . $newBooking->getclient()->getFullName() . "<br> 
-                            Vous avez bien pris un rendez vous avec : $newBooking->getHairdresser()->getFullName()<br>
-                                Le  $newBooking->getSpeciality()->getDuration() pour une $newBooking->getSpeciality()->getNameSpeciality()<br>";
-
-                $mail->send( $newBooking->getClient()->getEmail(), $newBooking->getclient()->getFullName(), 'Votre rendez-vous est pris' , $content);
-                return $this->redirectToRoute('app_booking_new');
-            }
-
+            $newBooking = $form->getData();
+            $newBooking->setHairdresser($form->get('hairdresser')->getData());
+            $newBooking->setClient($this->getUser());
+            $bookingRepository->save($newBooking, true);
+            $this->addFlash('success', 'Votre réservation a bien été enregistrée');
+            $this->addFlash('success', 'Un email vous a été envoyé pour confirmer votre réservation');
+            $url = $this->generateUrl('app_booking_new',[
+                'token' => uniqid()]);
+            $mail = new Mail();
+            $content = "bonjour " . $newBooking->getclient()->getFullName() . "<br> Vous avez dmandez à réinitialiser votre mot de passe sur le site de Lyvia Palay<br><br>";
+            $content .= "Merci de bien vouloir cliquer sur le lien suivant pour <a href='".$url."'>mettre à jour votre mot de passe</a>";
+            $mail->send( $newBooking->getClient()->getEmail(), $newBooking->getclient()->getFullName(), 'Votre rendez-vous est pris' , $content);
+            return $this->redirectToRoute('app_booking_new');
+        }
         return $this->render('booking/new.html.twig', [
             'form' => $form->createView(),
             'booking' => $newBooking,

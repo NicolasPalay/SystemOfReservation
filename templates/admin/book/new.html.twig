@@ -18,15 +18,13 @@
                 <div class="ca-box-book">
                     <div class="d-flex justify-content-between py-3 w-75 flex-start mx-auto">
                         <a href="{{ path('admin_book_edit', {id: book.id}) }}" class="h4">{{ book.titleBook }}</a>
-                        <a href="#" class="ca-href-delete">delete</a>
+                        <a href="" class="ca-href-delete">delete</a>
                         <div class="modaleDelete" data-book-id="{{ book.id }}">
-<p class="pt-5">Etez-vous sûr de voulez supprimer :</p>
-                            <p class="text-center py-5">"{{ book.titleBook }}"</p>
-    <hr class="my-4">
-                                <span class="ca-close ca-btn">x</span>
-                                <a href="#" class="delete-book-link"></a>
 
-                            <p class="my-5"><a  class="ca-btn" href="{{ path('admin_book_delete',{ id: book.id }) }}">supprimer</a></p>
+                                <span class="ca-close">Fermer</span>
+                                <a href="#" class="delete-book-link">supprimer</a>
+
+                            <a href="{{ path('admin_book_delete',{ id: book.id }) }}">delete</a>
                         </div>
                     </div>
 

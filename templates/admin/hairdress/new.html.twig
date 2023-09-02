@@ -20,7 +20,7 @@
             </article>
             <article class="ca-mini-picture">
                 {% if hairdresser.picture %}
-                    <a href="{{ path('admin_hairdresser_edit', { id:hairdresser.id }) }}">
+                    <a href="{{ path('admin_speciality_edit', { id:hairdresser.id }) }}">
                         <img src="{{ asset('assets/uploads/pictures/' ~ hairdresser.picture.name) }}" alt="">
                     </a>
                 {% endif %}

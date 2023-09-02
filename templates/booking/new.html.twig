@@ -5,11 +5,10 @@
 {% endblock %}
 {%  block CssHeader %}ca-form-header ca-margin-small{%  endblock %}
 {% block headerImg %}
-    {{ form_errors(form) }}
     <div class="infoRDV" >
         {% if  userRdV %}
         <ul>
-            <li>Félicitation <strong>{{ userRdV.client.fullName }}</strong></li>
+            <li>Félicitation <strong>{{ userRdV.client.fullName }}<</strong></li>
             <li>vous avez pris rendez-vous avec <br><strong>{{ userRdV.hairdresser.user.fullName }}</strong></li>
             <li>pour une scéance de <strong>{{ userRdV.speciality.nameSpeciality }}</strong></li>
             <li>le <strong>{{ userRdV.date|date('d/m/Y') }} à {{ userRdV.date|date('H:i') }}</strong></li>
